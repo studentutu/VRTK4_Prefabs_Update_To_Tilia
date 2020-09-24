@@ -24,7 +24,7 @@ namespace VRTK.Prefabs.Helpers.XRToolkit
 #if UNITY_EDITOR
         private XRUIInputModule asXruiInputModule;
         private TrackedDeviceModel UIMOdule;
-        private void FixedUpdate()
+        private void Update()
         {
             if (asXruiInputModule == null)
             {
@@ -38,6 +38,7 @@ namespace VRTK.Prefabs.Helpers.XRToolkit
                 UIMOdule.orientation = newOne;
                 UIMOdule.orientation = prev;
                 UIMOdule.select = true;
+                asXruiInputModule.Process();
             }
         }
 #endif

@@ -1379,5 +1379,15 @@ PrefabInstance:
       propertyPath: _monoscopic
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6667578429749152796, guid: 9fa8305543fd8724089c8cdfb5842bba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062688694620544442, guid: 9fa8305543fd8724089c8cdfb5842bba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fa8305543fd8724089c8cdfb5842bba, type: 3}
