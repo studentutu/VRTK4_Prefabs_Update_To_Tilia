@@ -1,8 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Tilia.Indicators.ObjectPointers;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.UI;
 using Zinnia.Cast;
 using Zinnia.Data.Type;
 using Zinnia.Pointer;
@@ -13,10 +16,32 @@ namespace VRTK.Prefabs.Helpers.XRToolkit
     public class VRTK_Set_Interactions_XR_Toolkit : MonoBehaviour
     {
         [SerializeField] private PointerFacade pointerFacade;
+        [SerializeField] private XRRayInteractor interactor;
         private List<Vector3> temporalList = new List<Vector3>();
         private ObjectPointer.EventData eventData;
         private PointsCast.EventData pointerCastEventData;
-        
+
+#if UNITY_EDITOR
+        private XRUIInputModule asXruiInputModule;
+        private TrackedDeviceModel UIMOdule;
+        private void FixedUpdate()
+        {
+            if (asXruiInputModule == null)
+            {
+                asXruiInputModule = EventSystem.current.GetComponent<XRUIInputModule>();
+            }
+            if (asXruiInputModule != null)
+            {
+                asXruiInputModule.GetTrackedDeviceModel(interactor, out UIMOdule);
+                var prev = UIMOdule.orientation;
+                var newOne = prev * Quaternion.Euler(45, 45, 45);
+                UIMOdule.orientation = newOne;
+                UIMOdule.orientation = prev;
+                UIMOdule.select = true;
+            }
+        }
+#endif
+
         private void FillInEventData()
         {
             if (pointerCastEventData == null)

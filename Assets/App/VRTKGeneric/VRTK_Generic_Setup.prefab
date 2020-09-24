@@ -550,6 +550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointerFacade: {fileID: 284994602002317530}
+  interactor: {fileID: 0}
 --- !u!1 &1695943382
 GameObject:
   m_ObjectHideFlags: 0
