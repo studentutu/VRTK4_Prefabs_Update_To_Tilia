@@ -550,7 +550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointerFacade: {fileID: 284994602002317530}
-  interactor: {fileID: 0}
+  interactor: {fileID: 1642210701}
 --- !u!1 &1695943382
 GameObject:
   m_ObjectHideFlags: 0
@@ -9811,9 +9811,9 @@ MonoBehaviour:
       m_Calls: []
   currentIndex: 0
   elements:
+  - {fileID: 5131943206127689573}
   - {fileID: 8702084821921460738}
   - {fileID: 256405370050636282}
-  - {fileID: 5131943206127689573}
 --- !u!1 &7062688694013115032
 GameObject:
   m_ObjectHideFlags: 0
@@ -10199,7 +10199,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7062688694620544440
 Transform:
   m_ObjectHideFlags: 0
@@ -12397,7 +12397,7 @@ PrefabInstance:
     - target: {fileID: 7127022811268798730, guid: 0f0da665e2e6a3442962a36bbebbc21c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7127022811268798731, guid: 0f0da665e2e6a3442962a36bbebbc21c,
         type: 3}
