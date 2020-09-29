@@ -1,29 +1,57 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Reflection.Emit;
 using Tilia.Indicators.ObjectPointers;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.XR.Interaction.Toolkit;
-using UnityEngine.XR.Interaction.Toolkit.UI;
 using Zinnia.Cast;
 using Zinnia.Data.Type;
 using Zinnia.Pointer;
 
-namespace VRTK.Prefabs.Helpers.XRToolkit
+
+namespace UnityEngine.XR.Interaction.Toolkit.UI
 {
     [DisallowMultipleComponent]
     public class VRTK_Set_Interactions_XR_Toolkit : MonoBehaviour
     {
         [SerializeField] private PointerFacade pointerFacade;
         [SerializeField] private XRRayInteractor interactor;
+        
         private List<Vector3> temporalList = new List<Vector3>();
         private ObjectPointer.EventData eventData;
         private PointsCast.EventData pointerCastEventData;
-
-#if UNITY_EDITOR
         private XRUIInputModule asXruiInputModule;
-        private TrackedDeviceModel UIMOdule;
+        
+        private MethodInfo actualMethod = null;
+
+        private MethodInfo ActualMethod
+        {
+            get
+            {
+                if (actualMethod == null)
+                {
+                    // Type[] types = { typeof(TrackedDeviceModel).MakeByRefType() };
+                    var bindingFlag = BindingFlags.NonPublic | BindingFlags.Instance;
+                    actualMethod = typeof(UIInputModule).GetMethod("ProcessTrackedDevice",bindingFlag); //, null,types, null);
+                }
+
+                return actualMethod;
+            }
+        }
+
+        private void InvokeReflexionMethod(ref TrackedDeviceModel UIMOdule)
+        {
+            //  asXruiInputModule.ProcessTrackedDevice(ref UIMOdule,true);
+            var actualArray = new System.Object[]{ UIMOdule, true};
+            if (ActualMethod != null)
+            {
+                ActualMethod.Invoke(asXruiInputModule, actualArray);
+                UIMOdule = (TrackedDeviceModel) actualArray[0];
+            }
+        }
+
         private void Update()
         {
             if (asXruiInputModule == null)
@@ -32,16 +60,19 @@ namespace VRTK.Prefabs.Helpers.XRToolkit
             }
             if (asXruiInputModule != null)
             {
+                TrackedDeviceModel UIMOdule;
                 asXruiInputModule.GetTrackedDeviceModel(interactor, out UIMOdule);
                 var prev = UIMOdule.orientation;
                 var newOne = prev * Quaternion.Euler(45, 45, 45);
                 UIMOdule.orientation = newOne;
                 UIMOdule.orientation = prev;
                 UIMOdule.select = true;
-                asXruiInputModule.Process();
+                // asXruiInputModule.Process();
+                interactor.UpdateUIModel(ref UIMOdule);
+                UIMOdule.select = true;
+                InvokeReflexionMethod(ref UIMOdule);
             }
         }
-#endif
 
         private void FillInEventData()
         {
