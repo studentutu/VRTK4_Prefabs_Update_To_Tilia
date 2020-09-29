@@ -49,6 +49,14 @@ namespace UnityEngine.XR.Interaction.Toolkit.UI
             {
                 ActualMethod.Invoke(asXruiInputModule, actualArray);
                 UIMOdule = (TrackedDeviceModel) actualArray[0];
+                var allPoints = UIMOdule.raycastPoints;
+                string concat = "";
+                for (int i = 0; i < allPoints.Count; i++)
+                {
+                    concat += allPoints[i];
+                    concat += " | ";
+                }
+                Debug.LogWarning("is updated? " + concat);
             }
         }
 
