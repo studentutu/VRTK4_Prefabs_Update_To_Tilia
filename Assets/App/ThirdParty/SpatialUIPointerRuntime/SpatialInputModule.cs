@@ -29,7 +29,8 @@ namespace Adrenak.SUI
         private List<EventDataToPointer> listOfPointers = new List<EventDataToPointer>();
         private Camera eventCamera;
         private EventDataToPointer dataToPointer;
-
+        private int ProcessedThisFrame = 0;
+        
         protected Camera EventCamera
         {
             get
@@ -180,9 +181,20 @@ namespace Adrenak.SUI
 
             canvas.worldCamera = eventCamera;
         }
-        
+
+        public void Update()
+        {
+            if (ProcessedThisFrame == 0)
+            {
+                Process();
+            }
+
+            ProcessedThisFrame = 0;
+        }
+
         public override void Process()
         {
+            ProcessedThisFrame++;
             var inputReady = InputReady();
             if (!inputReady)
             {
@@ -238,7 +250,7 @@ namespace Adrenak.SUI
                     }
                 }
 
-                dataToPointer.lastInputReady = inputReady;
+                dataToPointer.lastInputReady = dataToPointer.InputReady;
             }
         }
 

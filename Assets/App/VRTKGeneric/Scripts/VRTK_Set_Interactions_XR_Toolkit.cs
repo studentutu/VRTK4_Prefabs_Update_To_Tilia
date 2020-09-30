@@ -23,79 +23,24 @@ namespace UnityEngine.XR.Interaction.Toolkit.UI
         private List<Vector3> temporalList = new List<Vector3>();
         private ObjectPointer.EventData eventData;
         private PointsCast.EventData pointerCastEventData;
-        private XRUIInputModule asXruiInputModule;
+        private XRUIInputModule asXrUiModule;
 
-        private MethodInfo actualMethod = null;
-
-        private MethodInfo ActualMethod
+        private XRUIInputModule XRuiInputModuleRef
         {
             get
             {
-                if (actualMethod == null)
+                if (asXrUiModule == null)
                 {
-                    // Type[] types = { typeof(TrackedDeviceModel).MakeByRefType() };
-                    var bindingFlag = BindingFlags.NonPublic | BindingFlags.Instance;
-                    actualMethod = typeof(UIInputModule).GetMethod("ProcessTrackedDevice",bindingFlag); //, null,types, null);
+                    asXrUiModule = EventSystem.current.GetComponent<XRUIInputModule>();
                 }
 
-                return actualMethod;
+                return asXrUiModule;
             }
         }
 
-        private void InvokeReflexionMethod(ref TrackedDeviceModel UIMOdule)
-        {
-            //  asXruiInputModule.ProcessTrackedDevice(ref UIMOdule,true);
-            var actualArray = new System.Object[]{ UIMOdule, true};
-            if (ActualMethod != null)
-            {
-                ActualMethod.Invoke(asXruiInputModule, actualArray);
-                UIMOdule = (TrackedDeviceModel) actualArray[0];
-                var allPoints = UIMOdule.raycastPoints;
-                if (allPoints.Count > 1)
-                {
-                    Debug.DrawLine(allPoints[0],allPoints[1]);
-                }
-            }
-        }
-        
-        private MethodInfo actualMethodHandle = null;
 
-        private MethodInfo ActualMethodHandle 
-        {
-            get
-            {
-                if (actualMethodHandle == null)
-                {
-                    var bindingFlag = BindingFlags.NonPublic | BindingFlags.Instance;
-                    actualMethodHandle = typeof(BaseInputModule).GetMethod("HandlePointerExitAndEnter",bindingFlag); //, null,types, null);
-                }
-
-                return actualMethodHandle;
-            }
-        }
-
-        private void InvokeReflexionMethodHandle( PointerEventData currentPointerData, GameObject newEnterTarget)
-        {
-            //  asXruiInputModule.HandlePointerExitAndEnter(currentPointerData,newEnterTarget);
-            var actualArray = new System.Object[]{ currentPointerData, newEnterTarget};
-            if (asXruiInputModule == null)
-            {
-                asXruiInputModule = EventSystem.current.GetComponent<XRUIInputModule>();
-            }
-            if (ActualMethodHandle != null)
-            {
-                ActualMethodHandle.Invoke(asXruiInputModule, actualArray);
-            }
-        }
-
-        
         private void Update()
         {
-            if (asXruiInputModule == null)
-            {
-                asXruiInputModule = EventSystem.current.GetComponent<XRUIInputModule>();
-            }
-
             // if (asXruiInputModule != null)
             // {
             //     TrackedDeviceModel UIMOdule;
@@ -140,6 +85,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.UI
         [UnityEngine.Scripting.Preserve]
         public void HoverEnterXRToolkit(XRBaseInteractable interactable)
         {
+            Debug.LogWarning("On Hover Enter");
             var listOfAllHoveredInteractors = interactable.hoveringInteractors;
             temporalList.Clear();
             XRRayInteractor asRay;
@@ -169,6 +115,8 @@ namespace UnityEngine.XR.Interaction.Toolkit.UI
         [UnityEngine.Scripting.Preserve]
         public void OnHoverExitFromXRToolkit(XRBaseInteractable interactable)
         {
+            Debug.LogWarning("On Hover Exit");
+
             FillInEventData();
             var data = eventData;
             data.CurrentHoverDuration = 0.9f;
@@ -181,6 +129,8 @@ namespace UnityEngine.XR.Interaction.Toolkit.UI
         [UnityEngine.Scripting.Preserve]
         public void OnSelectEnterFromXRToolkit(XRBaseInteractable interactable)
         {
+            Debug.LogWarning("On Select Enter");
+
             var listOfAllHoveredInteractors = interactable.hoveringInteractors;
             temporalList.Clear();
             XRRayInteractor asRay;
@@ -210,6 +160,8 @@ namespace UnityEngine.XR.Interaction.Toolkit.UI
         [UnityEngine.Scripting.Preserve]
         public void OnSelectExitFromXRToolkit(XRBaseInteractable interactable)
         {
+            Debug.LogWarning("On Select Exit");
+
             FillInEventData();
             var data = eventData;
             data.CurrentHoverDuration = 0.9f;
