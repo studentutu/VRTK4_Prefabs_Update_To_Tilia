@@ -23,9 +23,12 @@ namespace Adrenak.SUI
                 EventData.position = new Vector2(cam.pixelWidth / 2, cam.pixelHeight / 2);
             }
         }
+        private static SpatialInputModule instance;
+        private static bool Quit = false;
         
         private List<EventDataToPointer> listOfPointers = new List<EventDataToPointer>();
         private Camera eventCamera;
+        private EventDataToPointer dataToPointer;
 
         protected Camera EventCamera
         {
@@ -81,7 +84,6 @@ namespace Adrenak.SUI
             }
             return false;
         }
-
         
         public EventDataToPointer GetPointerData(SpatialInputPointer forPointer)
         {
@@ -94,9 +96,6 @@ namespace Adrenak.SUI
             }
             return null;
         }
-
-        private static SpatialInputModule instance;
-        private static bool Quit = false;
 
         private static void OnQuit()
         {
@@ -162,18 +161,44 @@ namespace Adrenak.SUI
 
         private void InitializeCanvas(Canvas canvas, Camera eventCamera) 
         {
+            if (canvas == null)
+            {
+                return;
+            }
+
             if(canvas.renderMode != RenderMode.WorldSpace) 
             {
                 Debug.LogWarning($"Canvas on {canvas.gameObject} GameObject is not in WorldSpace more and will not work with spatial input");
                 return;
             }
+            // Ensure each canvas has WorldCanvasSetter
+            var component = canvas.gameObject.GetComponent<WorldCanvasSetter>();
+            if (component == null)
+            {
+                canvas.gameObject.AddComponent<WorldCanvasSetter>();
+            }
+
             canvas.worldCamera = eventCamera;
         }
-
-
+        
         public override void Process()
         {
             var inputReady = InputReady();
+            if (!inputReady)
+            {
+                for (int i = 0; i < listOfPointers.Count; i++)
+                {
+                    dataToPointer = listOfPointers[i];
+                    if (dataToPointer.pointer == null || !dataToPointer.lastInputReady)
+                    {
+                        continue;
+                    }
+                    Release(dataToPointer);
+                    dataToPointer.lastInputReady = false;
+                }
+                return;
+            }
+
             for (int i = 0; i < listOfPointers.Count; i++)
             {
                 if (listOfPointers[i].pointer == null)
@@ -181,8 +206,8 @@ namespace Adrenak.SUI
                     continue;
                 }
 
-                EventDataToPointer dataToPointer = listOfPointers[i];
-                SpatialInputPointer currentPointer = listOfPointers[i].pointer;
+                dataToPointer = listOfPointers[i];
+                SpatialInputPointer currentPointer = dataToPointer.pointer;
                 PointEventCamera(currentPointer.transform);
 
                 eventSystem.RaycastAll(dataToPointer.EventData, m_RaycastResultCache);
@@ -225,7 +250,6 @@ namespace Adrenak.SUI
             EventCamera.transform.localPosition = Vector3.zero;
             EventCamera.transform.localEulerAngles = Vector3.zero;
         }
-
 
         private void Down(EventDataToPointer dataToPointer) 
         {
@@ -281,8 +305,9 @@ namespace Adrenak.SUI
             dataToPointer.EventData.pointerDrag = null;
         }
 
-
-        public virtual void RegisterCanvas(Canvas canvas) =>
+        public virtual void RegisterCanvas(Canvas canvas)
+        {
             InitializeCanvas(canvas, EventCamera);
+        }
     }
 }

@@ -7,7 +7,6 @@ namespace Adrenak.SUI
     {
         public bool input;
         public bool debugDraw;
-        public bool holdInput;
 
         private void OnEnable()
         {
@@ -22,14 +21,13 @@ namespace Adrenak.SUI
             }
         }
 
-        void Update()
+        private void OnDrawGizmos()
         {
-            if (!input)
+            if (debugDraw)
             {
-                input = holdInput;
+                Gizmos.color = Color.blue;
+                Gizmos.DrawRay(transform.position, transform.forward * 10000);
             }
-            if(debugDraw)
-                Debug.DrawRay(transform.position, transform.forward * 10000, Color.blue, Time.deltaTime);
         }
     }
 }
