@@ -167,7 +167,7 @@ namespace Adrenak.SUI
                 Debug.LogWarning($"Canvas on {canvas.gameObject} GameObject is not in WorldSpace more and will not work with spatial input");
                 return;
             }
-            // canvas.worldCamera = eventCamera;
+            canvas.worldCamera = eventCamera;
         }
 
 
