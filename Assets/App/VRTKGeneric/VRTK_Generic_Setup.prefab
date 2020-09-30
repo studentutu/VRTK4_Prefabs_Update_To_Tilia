@@ -14117,7 +14117,14 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 92537133}
-    m_RemovedComponents: []
+    - target: {fileID: 8501967450266412362, guid: e2fae3a21f7baaa43b014a5c6350f5ff,
+        type: 3}
+      propertyPath: m_HoverToSelect
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8291589601942887623, guid: e2fae3a21f7baaa43b014a5c6350f5ff, type: 3}
+    - {fileID: 7483442639650550745, guid: e2fae3a21f7baaa43b014a5c6350f5ff, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e2fae3a21f7baaa43b014a5c6350f5ff, type: 3}
 --- !u!1 &1030037016 stripped
 GameObject:

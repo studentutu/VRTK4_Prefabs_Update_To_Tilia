@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
 using Adrenak.SUI;
 using Tilia.Indicators.ObjectPointers;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using Zinnia.Cast;
 using Zinnia.Data.Type;
 using Zinnia.Pointer;
@@ -87,6 +87,13 @@ namespace UnityEngine.XR.Interaction.Toolkit.UI
         {
             Debug.LogWarning("On Hover Enter");
             var listOfAllHoveredInteractors = interactable.hoveringInteractors;
+            var button = interactable.GetComponent<XRButtonListener>();
+            if (button != null)
+            {
+                button.ButtonChangeStateEvent.RemoveListener(OnChangeState);
+                button.ButtonChangeStateEvent.AddListener(OnChangeState);
+            }
+
             temporalList.Clear();
             XRRayInteractor asRay;
             RaycastHit hit;
@@ -116,7 +123,11 @@ namespace UnityEngine.XR.Interaction.Toolkit.UI
         public void OnHoverExitFromXRToolkit(XRBaseInteractable interactable)
         {
             Debug.LogWarning("On Hover Exit");
-
+            var button = interactable.GetComponent<XRButtonListener>();
+            if (button != null)
+            {
+                button.ButtonChangeStateEvent.RemoveListener(OnChangeState);
+            }
             FillInEventData();
             var data = eventData;
             data.CurrentHoverDuration = 0.9f;
@@ -130,6 +141,10 @@ namespace UnityEngine.XR.Interaction.Toolkit.UI
         public void OnSelectEnterFromXRToolkit(XRBaseInteractable interactable)
         {
             Debug.LogWarning("On Select Enter");
+            if (interactable == null)
+            {
+                return;
+            }
 
             var listOfAllHoveredInteractors = interactable.hoveringInteractors;
             temporalList.Clear();
@@ -154,7 +169,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.UI
             data.IsCurrentlyActive = true;
             data.CurrentPointsCastData = pointerCastEventData;
             data.CurrentPointsCastData.Points = new HeapAllocationFreeReadOnlyList<Vector3>(temporalList,0,temporalList.Count);
-            pointerFacade.Configuration.EmitHoverChanged(data);
+            pointerFacade.Configuration.EmitSelected(data);
         }
         
         [UnityEngine.Scripting.Preserve]
@@ -169,13 +184,27 @@ namespace UnityEngine.XR.Interaction.Toolkit.UI
             data.IsCurrentlyActive = false;
             data.CurrentPointsCastData = pointerCastEventData;
             data.CurrentPointsCastData.Points = new HeapAllocationFreeReadOnlyList<Vector3>(temporalList,0,temporalList.Count);
-            pointerFacade.Configuration.EmitHoverChanged(data);
+            pointerFacade.Configuration.EmitExited(data);
         }
 
         [UnityEngine.Scripting.Preserve]
         public void OnPress(bool enable)
         {
             SpatialUIpointer.input = enable;
+            interactor.allowSelect = true;
+        }
+
+        private void OnChangeState(XRButtonListener.ButtonStates state, Button button )
+        {
+            if (state == XRButtonListener.ButtonStates.Selected || state == XRButtonListener.ButtonStates.Pressed)
+            {
+                OnSelectEnterFromXRToolkit(button.GetComponent<XRBaseInteractable>());
+            }
+
+            if (state == XRButtonListener.ButtonStates.Normal || state == XRButtonListener.ButtonStates.Disabled)
+            {
+                OnSelectExitFromXRToolkit(button.GetComponent<XRBaseInteractable>());
+            }
         }
     }
 }
