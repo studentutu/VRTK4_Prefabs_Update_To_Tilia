@@ -1,4 +1,6 @@
-﻿namespace VRTK.Prefabs.Interactions.InteractableSnapZone
+﻿using Tillia.VRTKUI.Prefabs.Interactions.Interactables;
+
+namespace Tillia.VRTKUI.Prefabs.Interactions.InteractableSnapZone
 {
     using UnityEngine;
     using UnityEngine.Events;
@@ -10,7 +12,7 @@
     using Zinnia.Rule;
     using Zinnia.Data.Type;
     using Zinnia.Data.Attribute;
-    using VRTK.Prefabs.Interactions.Interactables;
+    using VRTKUI.Prefabs.Interactions.Interactables;
 
     public class SnapZoneFacade : MonoBehaviour
     {

@@ -5,10 +5,10 @@
 // or without needing to append the name of the game object. 
 //
 //====================================================================================
-namespace VRTK
+namespace Tillia.VRTKUI
 {
     using UnityEngine;
-    public sealed class VRTK_PlayerObject : MonoBehaviour
+    public sealed class VRTK4_PlayerObject : MonoBehaviour
     {
         /// <summary>
         /// The type of object associated to the player.
@@ -54,10 +54,10 @@ namespace VRTK
         /// <param name="objType">The type of player object that is to be assigned.</param>
         public static void SetPlayerObject(GameObject obj, ObjectTypes objType)
         {
-            VRTK_PlayerObject currentPlayerObject = obj.GetComponent<VRTK_PlayerObject>();
+            VRTK4_PlayerObject currentPlayerObject = obj.GetComponent<VRTK4_PlayerObject>();
             if (currentPlayerObject == null)
             {
-                currentPlayerObject = obj.AddComponent<VRTK_PlayerObject>();
+                currentPlayerObject = obj.AddComponent<VRTK4_PlayerObject>();
             }
             currentPlayerObject.objectType = objType;
         }
@@ -70,7 +70,7 @@ namespace VRTK
         /// <returns>Returns true if the object is a player object with the optional given type.</returns>
         public static bool IsPlayerObject(GameObject obj, ObjectTypes ofType = ObjectTypes.Null)
         {
-            VRTK_PlayerObject[] playerObjects = obj.GetComponentsInParent<VRTK_PlayerObject>(true);
+            VRTK4_PlayerObject[] playerObjects = obj.GetComponentsInParent<VRTK4_PlayerObject>(true);
             for (int i = 0; i < playerObjects.Length; i++)
             {
                 if (ofType == ObjectTypes.Null || ofType == playerObjects[i].objectType)

@@ -1,4 +1,6 @@
-﻿namespace VRTK.Prefabs.Interactions.Interactables.Grab.Provider
+﻿using Tillia.VRTKUI.Prefabs.Interactions.Interactors;
+
+namespace Tillia.VRTKUI.Prefabs.Interactions.Interactables.Grab.Provider
 {
     using UnityEngine;
     using System.Collections.Generic;
@@ -6,7 +8,7 @@
     using Malimbe.PropertySerializationAttribute;
     using Zinnia.Data.Attribute;
     using Zinnia.Data.Collection.Stack;
-    using VRTK.Prefabs.Interactions.Interactors;
+    using VRTKUI.Prefabs.Interactions.Interactors;
 
     /// <summary>
     /// Processes a received grab event into an Observable Stack to handle multiple output options for each grab type.

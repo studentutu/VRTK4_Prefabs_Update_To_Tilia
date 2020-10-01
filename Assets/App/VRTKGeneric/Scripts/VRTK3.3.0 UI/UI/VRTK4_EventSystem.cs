@@ -1,14 +1,14 @@
-﻿namespace VRTK
+﻿namespace Tillia.VRTKUI
 {
     using System.Collections;
     using System.Linq;
     using System.Reflection;
     using UnityEngine.EventSystems;
 
-    public class VRTK_EventSystem : EventSystem
+    public class VRTK4_EventSystem : EventSystem
     {
         protected EventSystem previousEventSystem;
-        protected VRTK_VRInputModule vrInputModule;
+        protected VRTK4_VRInputModule vrInputModule;
 
         private static readonly FieldInfo[] EVENT_SYSTEM_FIELD_INFOS = typeof(EventSystem).GetFields(BindingFlags.Public | BindingFlags.Instance);
         private static readonly PropertyInfo[] EVENT_SYSTEM_PROPERTY_INFOS = typeof(EventSystem).GetProperties(BindingFlags.Public | BindingFlags.Instance).Except(new[] { typeof(EventSystem).GetProperty("enabled") }).ToArray();
@@ -23,7 +23,7 @@
                 CopyValuesFrom(previousEventSystem, this);
             }
 
-            vrInputModule = gameObject.AddComponent<VRTK_VRInputModule>();
+            vrInputModule = gameObject.AddComponent<VRTK4_VRInputModule>();
             base.OnEnable();
             StartCoroutine(SetEventSystemOfBaseInputModulesAfterFrameDelay(this));
         }

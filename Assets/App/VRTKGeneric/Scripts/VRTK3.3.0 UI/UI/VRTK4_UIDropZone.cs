@@ -1,5 +1,5 @@
 ﻿// UI Drop Zone|UI|80040
-namespace VRTK
+namespace Tillia.VRTKUI
 {
     using UnityEngine;
     using UnityEngine.EventSystems;
@@ -17,15 +17,15 @@ namespace VRTK
     /// `VRTK/Examples/034_Controls_InteractingWithUnityUI` demonstrates a collection of UI Drop Zones.
     /// </example>
     [AddComponentMenu("VRTK/Scripts/UI/VRTK_UIDropZone")]
-    public class VRTK_UIDropZone : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class VRTK4_UIDropZone : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        protected VRTK_UIDraggableItem droppableItem;
+        protected VRTK4_UIDraggableItem droppableItem;
 
         public virtual void OnPointerEnter(PointerEventData eventData)
         {
             if (eventData.pointerDrag != null)
             {
-                VRTK_UIDraggableItem dragItem = eventData.pointerDrag.GetComponent<VRTK_UIDraggableItem>();
+                VRTK4_UIDraggableItem dragItem = eventData.pointerDrag.GetComponent<VRTK4_UIDraggableItem>();
                 if (dragItem != null && dragItem.restrictToDropZone)
                 {
                     dragItem.validDropZone = gameObject;

@@ -1,7 +1,9 @@
-﻿namespace VRTK.Prefabs.Interactions.Interactables.Grab.Action
+﻿using Tillia.VRTKUI.Prefabs.Interactions.Interactables.Grab.Provider;
+
+namespace Tillia.VRTKUI.Prefabs.Interactions.Interactables.Grab.Action
 {
     using UnityEngine;
-    using VRTK.Prefabs.Interactions.Interactables.Grab.Provider;
+    using VRTKUI.Prefabs.Interactions.Interactables.Grab.Provider;
 
     /// <summary>
     /// Describes the action of swapping a an action from being the secondary action to the primary action.

@@ -1,4 +1,6 @@
-﻿namespace VRTK.Prefabs.Locomotion.Movement.Climb
+﻿using Tillia.VRTKUI.Prefabs.Locomotion.BodyRepresentation;
+
+namespace Tillia.VRTKUI.Prefabs.Locomotion.Movement.Climb
 {
     using UnityEngine;
     using System.Collections.Generic;
@@ -10,7 +12,7 @@
     using Zinnia.Tracking.Velocity;
     using Zinnia.Data.Operation.Mutation;
     using Zinnia.Data.Type.Transformation.Aggregation;
-    using VRTK.Prefabs.Locomotion.BodyRepresentation;
+    using VRTKUI.Prefabs.Locomotion.BodyRepresentation;
 
     /// <summary>
     /// Sets up the Climb prefab based on the provided user settings.

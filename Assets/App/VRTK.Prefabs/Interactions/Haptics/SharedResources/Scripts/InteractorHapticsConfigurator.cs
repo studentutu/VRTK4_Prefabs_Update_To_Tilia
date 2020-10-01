@@ -1,4 +1,4 @@
-﻿namespace VRTK.Prefabs.Interactions.Haptics
+﻿namespace Tillia.VRTKUI.Prefabs.Interactions.Haptics
 {
     using UnityEngine;
     using Malimbe.XmlDocumentationAttribute;

@@ -1,11 +1,11 @@
 ﻿using Tilia.Input.UnityInputManager;
 using Zinnia.Action;
 
-namespace VRTK.Prefabs.CameraRig.SimulatedCameraRig
+namespace Tillia.VRTKUI.Prefabs.CameraRig.SimulatedCameraRig
 {
     using UnityEngine;
     using UnityEngine.UI;
-    using VRTK.Prefabs.CameraRig.UnityXRCameraRig.Input;
+    using VRTKUI.Prefabs.CameraRig.UnityXRCameraRig.Input;
 
     /// <summary>
     /// Sets up the key binding display.

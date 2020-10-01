@@ -1,4 +1,6 @@
-﻿namespace VRTK.Prefabs.Locomotion.Movement.Climb
+﻿using Tillia.VRTKUI.Prefabs.Locomotion.BodyRepresentation;
+
+namespace Tillia.VRTKUI.Prefabs.Locomotion.Movement.Climb
 {
     using UnityEngine;
     using UnityEngine.Events;
@@ -8,7 +10,7 @@
     using Malimbe.MemberClearanceMethod;
     using Malimbe.MemberChangeMethod;
     using Zinnia.Data.Attribute;
-    using VRTK.Prefabs.Locomotion.BodyRepresentation;
+    using VRTKUI.Prefabs.Locomotion.BodyRepresentation;
     using Malimbe.BehaviourStateRequirementMethod;
 
     /// <summary>

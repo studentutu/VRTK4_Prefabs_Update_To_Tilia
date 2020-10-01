@@ -1,4 +1,4 @@
-﻿namespace VRTK.Prefabs.Locomotion.Movement.SpatialManipulation
+﻿namespace Tillia.VRTKUI.Prefabs.Locomotion.Movement.SpatialManipulation
 {
     using UnityEngine;
     using Malimbe.MemberClearanceMethod;

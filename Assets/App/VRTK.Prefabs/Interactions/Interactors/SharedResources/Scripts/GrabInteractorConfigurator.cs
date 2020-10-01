@@ -1,4 +1,6 @@
-﻿namespace VRTK.Prefabs.Interactions.Interactors
+﻿using Tillia.VRTKUI.Prefabs.Interactions.Interactables;
+
+namespace Tillia.VRTKUI.Prefabs.Interactions.Interactors
 {
     using UnityEngine;
     using System.Collections.Generic;
@@ -14,7 +16,7 @@
     using Zinnia.Tracking.Velocity;
     using Zinnia.Tracking.Collision;
     using Zinnia.Tracking.Collision.Active;
-    using VRTK.Prefabs.Interactions.Interactables;
+    using VRTKUI.Prefabs.Interactions.Interactables;
 
     /// <summary>
     /// Sets up the Interactor Prefab grab settings based on the provided user settings.

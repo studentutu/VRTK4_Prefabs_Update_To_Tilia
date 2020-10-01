@@ -1,4 +1,7 @@
-﻿namespace VRTK.Prefabs.Locomotion.BodyRepresentation
+﻿using Tillia.VRTKUI.Prefabs.Interactions.Interactors;
+using Tillia.VRTKUI.Prefabs.Interactions.Interactors.Collection;
+
+namespace Tillia.VRTKUI.Prefabs.Locomotion.BodyRepresentation
 {
     using UnityEngine;
     using UnityEngine.Events;
@@ -7,8 +10,8 @@
     using Malimbe.XmlDocumentationAttribute;
     using Malimbe.PropertySerializationAttribute;
     using Zinnia.Data.Attribute;
-    using VRTK.Prefabs.Interactions.Interactors;
-    using VRTK.Prefabs.Interactions.Interactors.Collection;
+    using VRTKUI.Prefabs.Interactions.Interactors;
+    using VRTKUI.Prefabs.Interactions.Interactors.Collection;
 
     /// <summary>
     /// The public interface for the BodyRepresentation prefab.

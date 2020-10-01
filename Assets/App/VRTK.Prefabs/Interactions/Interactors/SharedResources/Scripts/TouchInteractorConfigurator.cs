@@ -1,4 +1,4 @@
-﻿namespace VRTK.Prefabs.Interactions.Interactors
+﻿namespace Tillia.VRTKUI.Prefabs.Interactions.Interactors
 {
     using UnityEngine;
     using System.Collections.Generic;

@@ -1,4 +1,6 @@
-﻿namespace VRTK.Prefabs.Interactions.InteractableSnapZone
+﻿using Tillia.VRTKUI.Prefabs.Interactions.Interactables;
+
+namespace Tillia.VRTKUI.Prefabs.Interactions.InteractableSnapZone
 {
     using UnityEngine;
     using UnityEngine.Events;
@@ -8,7 +10,7 @@
     using Malimbe.PropertySerializationAttribute;
     using Zinnia.Extension;
     using Zinnia.Data.Attribute;
-    using VRTK.Prefabs.Interactions.Interactables;
+    using VRTKUI.Prefabs.Interactions.Interactables;
 
     /// <summary>
     /// Determines if the collided SnapZone is valid for activation based on whether another snap zone is already holding the activated state.

@@ -1,4 +1,7 @@
-﻿namespace VRTK.Prefabs.Locomotion.BodyRepresentation
+﻿using Tillia.VRTKUI.Prefabs.Interactions.Interactables;
+using Tillia.VRTKUI.Prefabs.Interactions.Interactors;
+
+namespace Tillia.VRTKUI.Prefabs.Locomotion.BodyRepresentation
 {
     using UnityEngine;
     using System;
@@ -14,8 +17,8 @@
     using Zinnia.Process;
     using Zinnia.Tracking.Collision;
     using Zinnia.Tracking.Follow;
-    using VRTK.Prefabs.Interactions.Interactables;
-    using VRTK.Prefabs.Interactions.Interactors;
+    using VRTKUI.Prefabs.Interactions.Interactables;
+    using VRTKUI.Prefabs.Interactions.Interactors;
 
     /// <summary>
     /// Sets up the BodyRepresentation prefab based on the provided user settings and implements the logic to represent a body.

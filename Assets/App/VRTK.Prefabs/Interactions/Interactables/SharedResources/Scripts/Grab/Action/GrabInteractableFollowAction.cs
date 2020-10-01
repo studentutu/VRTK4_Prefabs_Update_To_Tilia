@@ -1,4 +1,4 @@
-﻿namespace VRTK.Prefabs.Interactions.Interactables.Grab.Action
+﻿namespace Tillia.VRTKUI.Prefabs.Interactions.Interactables.Grab.Action
 {
     using UnityEngine;
     using Malimbe.MemberChangeMethod;

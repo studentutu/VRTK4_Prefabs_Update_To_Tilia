@@ -1,12 +1,10 @@
-﻿// UI Canvas|UI|80010
-namespace VRTK
+﻿namespace Tillia.VRTKUI
 {
     using UnityEngine;
     using UnityEngine.UI;
     using UnityEngine.EventSystems;
     using System.Collections;
     using System.Reflection;
-    using System;
 
     /// <summary>
     /// Denotes a Unity World UI Canvas can be interacted with a UIPointer script.
@@ -21,8 +19,7 @@ namespace VRTK
     /// <example>
     /// `VRTK/Examples/034_Controls_InteractingWithUnityUI` uses the `VRTK_UICanvas` script on two of the canvases to show how the UI Pointer can interact with them.
     /// </example>
-    [AddComponentMenu("VRTK/Scripts/UI/VRTK_UICanvas")]
-    public class VRTK_UICanvas : MonoBehaviour
+    public class VRTK4_UICanvas : MonoBehaviour
     {
         [Tooltip("Determines if a UI Click action should happen when a UI Pointer game object collides with this canvas.")]
         public bool clickOnPointerCollision = false;
@@ -52,9 +49,9 @@ namespace VRTK
 
         protected virtual void OnTriggerEnter(Collider collider)
         {
-            VRTK_PlayerObject colliderCheck = collider.GetComponentInParent<VRTK_PlayerObject>();
-            VRTK_UIPointer pointerCheck = collider.GetComponentInParent<VRTK_UIPointer>();
-            if (pointerCheck != null && colliderCheck != null && colliderCheck.objectType == VRTK_PlayerObject.ObjectTypes.Collider)
+            VRTK4_PlayerObject colliderCheck = collider.GetComponentInParent<VRTK4_PlayerObject>();
+            VRTK4_UIPointer pointerCheck = collider.GetComponentInParent<VRTK4_UIPointer>();
+            if (pointerCheck != null && colliderCheck != null && colliderCheck.objectType == VRTK4_PlayerObject.ObjectTypes.Collider)
             {
                 pointerCheck.collisionClick = clickOnPointerCollision;
             }
@@ -62,7 +59,7 @@ namespace VRTK
 
         protected virtual void OnTriggerExit(Collider collider)
         {
-            VRTK_UIPointer pointerCheck = collider.GetComponentInParent<VRTK_UIPointer>();
+            VRTK4_UIPointer pointerCheck = collider.GetComponentInParent<VRTK4_UIPointer>();
             if (pointerCheck != null)
             {
                 pointerCheck.collisionClick = false;
@@ -75,7 +72,7 @@ namespace VRTK
 
             if (canvas == null || canvas.renderMode != RenderMode.WorldSpace)
             {
-                VRTK_Logger.Error(VRTK_Logger.GetCommonMessage(VRTK_Logger.CommonMessageKeys.REQUIRED_COMPONENT_MISSING_FROM_GAMEOBJECT, "VRTK_UICanvas", "Canvas", "the same", " that is set to `Render Mode = World Space`"));
+                VRTK4_Logger.Error(VRTK4_Logger.GetCommonMessage(VRTK4_Logger.CommonMessageKeys.REQUIRED_COMPONENT_MISSING_FROM_GAMEOBJECT, "VRTK_UICanvas", "Canvas", "the same", " that is set to `Render Mode = World Space`"));
                 return;
             }
 
@@ -83,12 +80,12 @@ namespace VRTK
             Vector2 canvasSize = canvasRectTransform.sizeDelta;
             //copy public params then disable existing graphic raycaster
             GraphicRaycaster defaultRaycaster = canvas.gameObject.GetComponent<GraphicRaycaster>();
-            VRTK_UIGraphicRaycaster customRaycaster = canvas.gameObject.GetComponent<VRTK_UIGraphicRaycaster>();
+            VRTK4_UIGraphicRaycaster customRaycaster = canvas.gameObject.GetComponent<VRTK4_UIGraphicRaycaster>();
 
             //if it doesn't already exist, add the custom raycaster
             if (customRaycaster == null)
             {
-                customRaycaster = canvas.gameObject.AddComponent<VRTK_UIGraphicRaycaster>();
+                customRaycaster = canvas.gameObject.AddComponent<VRTK4_UIGraphicRaycaster>();
             }
 
             if (defaultRaycaster != null && defaultRaycaster.enabled)
@@ -182,7 +179,7 @@ namespace VRTK
             }
 
             GraphicRaycaster defaultRaycaster = canvas.gameObject.GetComponent<GraphicRaycaster>();
-            VRTK_UIGraphicRaycaster customRaycaster = canvas.gameObject.GetComponent<VRTK_UIGraphicRaycaster>();
+            VRTK4_UIGraphicRaycaster customRaycaster = canvas.gameObject.GetComponent<VRTK4_UIGraphicRaycaster>();
             //if a custom raycaster exists then remove it
             if (customRaycaster != null)
             {
@@ -229,9 +226,9 @@ namespace VRTK
     {
         protected virtual void OnTriggerEnter(Collider collider)
         {
-            VRTK_PlayerObject colliderCheck = collider.GetComponentInParent<VRTK_PlayerObject>();
-            VRTK_UIPointer pointerCheck = collider.GetComponentInParent<VRTK_UIPointer>();
-            if (pointerCheck != null && colliderCheck != null && colliderCheck.objectType == VRTK_PlayerObject.ObjectTypes.Collider)
+            VRTK4_PlayerObject colliderCheck = collider.GetComponentInParent<VRTK4_PlayerObject>();
+            VRTK4_UIPointer pointerCheck = collider.GetComponentInParent<VRTK4_UIPointer>();
+            if (pointerCheck != null && colliderCheck != null && colliderCheck.objectType == VRTK4_PlayerObject.ObjectTypes.Collider)
             {
                 pointerCheck.autoActivatingCanvas = gameObject;
             }
@@ -239,7 +236,7 @@ namespace VRTK
 
         protected virtual void OnTriggerExit(Collider collider)
         {
-            VRTK_UIPointer pointerCheck = collider.GetComponentInParent<VRTK_UIPointer>();
+            VRTK4_UIPointer pointerCheck = collider.GetComponentInParent<VRTK4_UIPointer>();
             if (pointerCheck != null && pointerCheck.autoActivatingCanvas == gameObject)
             {
                 pointerCheck.autoActivatingCanvas = null;

@@ -1,4 +1,6 @@
-﻿namespace VRTK.Prefabs.Interactions.Controllables
+﻿using Tillia.VRTKUI.Prefabs.Interactions.Interactables;
+
+namespace Tillia.VRTKUI.Prefabs.Interactions.Controllables
 {
     using UnityEngine;
     using Malimbe.XmlDocumentationAttribute;
@@ -9,7 +11,7 @@
     using Zinnia.Data.Attribute;
     using Zinnia.Tracking.Velocity;
     using Zinnia.Tracking.Follow.Modifier.Property.Rotation;
-    using VRTK.Prefabs.Interactions.Interactables;
+    using VRTKUI.Prefabs.Interactions.Interactables;
 
     /// <summary>
     /// A rotational drive that directly manipulates a <see cref="Transform.rotation"/> to control the rotational angle without the use of any physics.

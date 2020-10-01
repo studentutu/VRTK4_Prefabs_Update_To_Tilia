@@ -1,4 +1,4 @@
-﻿namespace VRTK.Prefabs.CameraRig.UnityXRCameraRig
+﻿namespace Tillia.VRTKUI.Prefabs.CameraRig.UnityXRCameraRig
 {
     using UnityEngine;
     using UnityEngine.XR;

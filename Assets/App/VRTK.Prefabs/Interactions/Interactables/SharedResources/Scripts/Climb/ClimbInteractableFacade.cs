@@ -1,9 +1,11 @@
-﻿namespace VRTK.Prefabs.Interactions.Interactables.Climb
+﻿using Tillia.VRTKUI.Prefabs.Locomotion.Movement.Climb;
+
+namespace Tillia.VRTKUI.Prefabs.Interactions.Interactables.Climb
 {
     using UnityEngine;
     using Malimbe.XmlDocumentationAttribute;
     using Malimbe.PropertySerializationAttribute;
-    using VRTK.Prefabs.Locomotion.Movement.Climb;
+    using VRTKUI.Prefabs.Locomotion.Movement.Climb;
 
     /// <summary>
     /// The public interface for the Interactable.Climbable prefab.

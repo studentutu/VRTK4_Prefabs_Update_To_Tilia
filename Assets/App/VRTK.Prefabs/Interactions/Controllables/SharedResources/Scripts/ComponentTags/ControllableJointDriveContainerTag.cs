@@ -1,4 +1,4 @@
-﻿namespace VRTK.Prefabs.Interactions.Controllables.ComponentTags
+﻿namespace Tillia.VRTKUI.Prefabs.Interactions.Controllables.ComponentTags
 {
     using UnityEngine;
 

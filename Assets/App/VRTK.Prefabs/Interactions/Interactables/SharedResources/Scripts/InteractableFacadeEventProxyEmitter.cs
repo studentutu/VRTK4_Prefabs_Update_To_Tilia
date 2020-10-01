@@ -1,4 +1,4 @@
-﻿namespace VRTK.Prefabs.Interactions.Interactables
+﻿namespace Tillia.VRTKUI.Prefabs.Interactions.Interactables
 {
     using UnityEngine.Events;
     using System;

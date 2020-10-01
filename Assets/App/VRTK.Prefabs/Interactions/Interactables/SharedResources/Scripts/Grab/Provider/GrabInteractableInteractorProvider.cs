@@ -1,4 +1,6 @@
-﻿namespace VRTK.Prefabs.Interactions.Interactables.Grab.Provider
+﻿using Tillia.VRTKUI.Prefabs.Interactions.Interactors;
+
+namespace Tillia.VRTKUI.Prefabs.Interactions.Interactables.Grab.Provider
 {
     using UnityEngine;
     using System.Collections.Generic;
@@ -7,7 +9,7 @@
     using Zinnia.Event.Proxy;
     using Zinnia.Extension;
     using Zinnia.Data.Attribute;
-    using VRTK.Prefabs.Interactions.Interactors;
+    using VRTKUI.Prefabs.Interactions.Interactors;
 
     /// <summary>
     /// Processes a received grab event and passes it over to the appropriate grab actions.

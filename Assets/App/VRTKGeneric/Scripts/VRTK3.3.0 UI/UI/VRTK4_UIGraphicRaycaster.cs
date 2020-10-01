@@ -1,4 +1,4 @@
-﻿namespace VRTK
+﻿namespace Tillia.VRTKUI
 {
     using System;
     using System.Collections.Generic;
@@ -13,7 +13,7 @@
     /// Note: Not intended for direct use. VRTK will intelligently replace the default GraphicsRaycaster
     ///   on canvases with this raycaster.
 
-    public class VRTK_UIGraphicRaycaster : GraphicRaycaster
+    public class VRTK4_UIGraphicRaycaster : GraphicRaycaster
     {
         protected Canvas currentCanvas;
         protected Vector2 lastKnownPosition;
@@ -48,7 +48,7 @@
                 {
                     nearestRaycast = castResult;
                 }
-                VRTK_SharedMethods.AddListValue(resultAppendList, castResult);
+                VRTK4_SharedMethods.AddListValue(resultAppendList, castResult);
             }
 
             if (nearestRaycast.HasValue)
@@ -71,7 +71,7 @@
                 {
                     RaycastHit hit;
                     Physics.Raycast(ray, out hit, maxDistance, m_BlockingMask);
-                    if (hit.collider != null && !VRTK_PlayerObject.IsPlayerObject(hit.collider.gameObject))
+                    if (hit.collider != null && !VRTK4_PlayerObject.IsPlayerObject(hit.collider.gameObject))
                     {
                         hitDistance = hit.distance;
                     }
@@ -81,7 +81,7 @@
                 {
                     RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, maxDistance);
 
-                    if (hit.collider != null && !VRTK_PlayerObject.IsPlayerObject(hit.collider.gameObject))
+                    if (hit.collider != null && !VRTK4_PlayerObject.IsPlayerObject(hit.collider.gameObject))
                     {
                         hitDistance = hit.fraction * maxDistance;
                     }
@@ -93,7 +93,7 @@
         //[Pure]
         protected virtual void Raycast(Canvas canvas, Camera eventCamera, PointerEventData eventData, Ray ray, ref List<RaycastResult> results)
         {
-            float hitDistance = GetHitDistance(ray, VRTK_UIPointer.GetPointerLength(eventData.pointerId));
+            float hitDistance = GetHitDistance(ray, VRTK4_UIPointer.GetPointerLength(eventData.pointerId));
             IList<Graphic> canvasGraphics = GraphicRegistry.GetGraphicsForCanvas(canvas);
             for (int i = 0; i < canvasGraphics.Count; ++i)
             {
@@ -140,7 +140,7 @@
                         sortingLayer = canvas.sortingLayerID,
                         sortingOrder = canvas.sortingOrder,
                     };
-                    VRTK_SharedMethods.AddListValue(results, result);
+                    VRTK4_SharedMethods.AddListValue(results, result);
                 }
             }
 

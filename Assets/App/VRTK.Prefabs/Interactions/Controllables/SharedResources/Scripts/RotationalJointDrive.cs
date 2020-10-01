@@ -1,4 +1,4 @@
-﻿namespace VRTK.Prefabs.Interactions.Controllables
+﻿namespace Tillia.VRTKUI.Prefabs.Interactions.Controllables
 {
     using UnityEngine;
     using System.Collections.Generic;

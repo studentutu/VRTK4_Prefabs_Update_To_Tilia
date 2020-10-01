@@ -1,4 +1,6 @@
-﻿namespace VRTK.Prefabs.Interactions.Controllables
+﻿using Tillia.VRTKUI.Prefabs.Interactions.Interactables;
+
+namespace Tillia.VRTKUI.Prefabs.Interactions.Controllables
 {
     using UnityEngine;
     using Malimbe.XmlDocumentationAttribute;
@@ -9,7 +11,7 @@
     using Zinnia.Data.Attribute;
     using Zinnia.Tracking.Modification;
     using Zinnia.Data.Type.Transformation;
-    using VRTK.Prefabs.Interactions.Interactables;
+    using VRTKUI.Prefabs.Interactions.Interactables;
 
     /// <summary>
     /// A directional drive that directly manipulates a <see cref="Transform.position"/> to control the linear translation movement without the use of any physics.

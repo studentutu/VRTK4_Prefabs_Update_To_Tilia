@@ -1,4 +1,4 @@
-﻿namespace VRTK.Prefabs.CameraRig.CameraRigSwitcher
+﻿namespace Tillia.VRTKUI.Prefabs.CameraRig.CameraRigSwitcher
 {
     using UnityEngine;
     using UnityEngine.XR;

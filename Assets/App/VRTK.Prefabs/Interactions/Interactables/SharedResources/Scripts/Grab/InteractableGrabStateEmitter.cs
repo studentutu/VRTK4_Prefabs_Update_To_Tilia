@@ -1,4 +1,4 @@
-﻿namespace VRTK.Prefabs.Interactions.Interactables.Grab
+﻿namespace Tillia.VRTKUI.Prefabs.Interactions.Interactables.Grab
 {
     using UnityEngine;
     using UnityEngine.Events;

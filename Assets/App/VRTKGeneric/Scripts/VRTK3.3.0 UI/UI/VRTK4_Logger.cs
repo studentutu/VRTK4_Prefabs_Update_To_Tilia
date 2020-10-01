@@ -1,4 +1,4 @@
-﻿namespace VRTK
+﻿namespace Tillia.VRTKUI
 {
     using UnityEngine;
 #if UNITY_EDITOR
@@ -9,7 +9,7 @@
     using System.Linq;
     using System.Text.RegularExpressions;
 
-    public class VRTK_Logger : MonoBehaviour
+    public class VRTK4_Logger : MonoBehaviour
     {
         public enum LogLevels
         {
@@ -38,7 +38,7 @@
             SCRIPTING_DEFINE_SYMBOLS_NOT_FOUND
         }
 
-        public static VRTK_Logger instance = null;
+        public static VRTK4_Logger instance = null;
 
         public static Dictionary<CommonMessageKeys, string> commonMessages = new Dictionary<CommonMessageKeys, string>()
         {
@@ -67,11 +67,11 @@
         {
             if (instance == null)
             {
-                GameObject loggerObject = new GameObject(VRTK_SharedMethods.GenerateVRTKObjectName(true, "Logger"))
+                GameObject loggerObject = new GameObject(VRTK4_SharedMethods.GenerateVRTKObjectName(true, "Logger"))
                 {
                     hideFlags = HideFlags.DontSaveInEditor | HideFlags.HideInHierarchy
                 };
-                instance = loggerObject.AddComponent<VRTK_Logger>();
+                instance = loggerObject.AddComponent<VRTK4_Logger>();
             }
 
             if (commonMessageParts.Count != commonMessages.Count)
@@ -92,10 +92,10 @@
             CreateIfNotExists();
 
             string returnMessage = "";
-            string outputMessage = VRTK_SharedMethods.GetDictionaryValue(commonMessages, messageKey);
+            string outputMessage = VRTK4_SharedMethods.GetDictionaryValue(commonMessages, messageKey);
             if (outputMessage != null)
             {
-                int outputMessageParts = VRTK_SharedMethods.GetDictionaryValue(commonMessageParts, messageKey);
+                int outputMessageParts = VRTK4_SharedMethods.GetDictionaryValue(commonMessageParts, messageKey);
                 if (parameters.Length != outputMessageParts)
                 {
                     Array.Resize(ref parameters, outputMessageParts);

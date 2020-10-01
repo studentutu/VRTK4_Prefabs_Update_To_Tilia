@@ -1,4 +1,7 @@
-﻿namespace VRTK.Prefabs.Interactions.InteractableSnapZone
+﻿using Tillia.VRTKUI.Prefabs.Interactions.Interactables;
+using Tillia.VRTKUI.Prefabs.Interactions.Interactables.Grab;
+
+namespace Tillia.VRTKUI.Prefabs.Interactions.InteractableSnapZone
 {
     using UnityEngine;
     using Malimbe.XmlDocumentationAttribute;
@@ -10,8 +13,8 @@
     using Zinnia.Data.Collection.List;
     using Zinnia.Rule.Collection;
     using Zinnia.Tracking.Modification;
-    using VRTK.Prefabs.Interactions.Interactables;
-    using VRTK.Prefabs.Interactions.Interactables.Grab;
+    using VRTKUI.Prefabs.Interactions.Interactables;
+    using VRTKUI.Prefabs.Interactions.Interactables.Grab;
 
     public class SnapZoneConfigurator : MonoBehaviour
     {

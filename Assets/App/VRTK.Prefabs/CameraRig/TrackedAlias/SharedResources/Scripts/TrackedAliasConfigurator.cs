@@ -1,4 +1,4 @@
-﻿namespace VRTK.Prefabs.CameraRig.TrackedAlias
+﻿namespace Tillia.VRTKUI.Prefabs.CameraRig.TrackedAlias
 {
     using UnityEngine;
     using Malimbe.XmlDocumentationAttribute;

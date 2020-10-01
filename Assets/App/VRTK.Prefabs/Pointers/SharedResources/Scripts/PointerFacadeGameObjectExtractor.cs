@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine.Events;
 
-namespace VRTK.Prefabs.Pointers
+namespace Tillia.VRTKUI.Prefabs.Pointers
 {
     using UnityEngine;
     using Malimbe.MemberClearanceMethod;

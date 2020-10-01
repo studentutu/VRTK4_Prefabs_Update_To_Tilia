@@ -1,4 +1,4 @@
-﻿namespace VRTK.Prefabs.Interactions.InteractableSnapZone
+﻿namespace Tillia.VRTKUI.Prefabs.Interactions.InteractableSnapZone
 {
     using UnityEngine;
     using Malimbe.XmlDocumentationAttribute;

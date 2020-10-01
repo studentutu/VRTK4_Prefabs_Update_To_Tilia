@@ -21895,7 +21895,7 @@ GameObject:
   - component: {fileID: 8129003590295737890}
   - component: {fileID: 8129003590295737891}
   m_Layer: 0
-  m_Name: Action Press
+  m_Name: ActionCustom Press
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

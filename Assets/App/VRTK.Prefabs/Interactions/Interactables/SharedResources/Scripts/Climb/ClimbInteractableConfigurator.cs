@@ -1,4 +1,4 @@
-﻿namespace VRTK.Prefabs.Interactions.Interactables.Climb
+﻿namespace Tillia.VRTKUI.Prefabs.Interactions.Interactables.Climb
 {
     using UnityEngine;
     using Malimbe.XmlDocumentationAttribute;

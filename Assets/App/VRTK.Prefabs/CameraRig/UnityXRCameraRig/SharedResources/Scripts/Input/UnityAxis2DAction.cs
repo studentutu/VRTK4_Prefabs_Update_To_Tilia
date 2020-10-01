@@ -1,4 +1,4 @@
-﻿namespace VRTK.Prefabs.CameraRig.UnityXRCameraRig.Input
+﻿namespace Tillia.VRTKUI.Prefabs.CameraRig.UnityXRCameraRig.Input
 {
     using UnityEngine;
     using Malimbe.PropertySerializationAttribute;

@@ -1,4 +1,4 @@
-﻿namespace VRTK.Prefabs.Locomotion.BodyRepresentation
+﻿namespace Tillia.VRTKUI.Prefabs.Locomotion.BodyRepresentation
 {
     using UnityEngine;
 

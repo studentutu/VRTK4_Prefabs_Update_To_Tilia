@@ -1,4 +1,4 @@
-﻿namespace VRTK.Prefabs.Helpers.Tooltip
+﻿namespace Tillia.VRTKUI.Prefabs.Helpers.Tooltip
 {
     using UnityEngine;
     using Malimbe.PropertySerializationAttribute;

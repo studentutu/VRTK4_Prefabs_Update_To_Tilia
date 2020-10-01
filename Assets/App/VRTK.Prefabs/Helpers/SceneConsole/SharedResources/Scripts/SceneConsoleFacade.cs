@@ -1,4 +1,4 @@
-﻿namespace VRTK.Prefabs.Helpers.SceneConsole
+﻿namespace Tillia.VRTKUI.Prefabs.Helpers.SceneConsole
 {
     using UnityEngine;
     using UnityEngine.UI;

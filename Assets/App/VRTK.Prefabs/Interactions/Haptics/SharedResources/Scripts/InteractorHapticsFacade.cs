@@ -1,4 +1,6 @@
-﻿namespace VRTK.Prefabs.Interactions.Haptics
+﻿using Tillia.VRTKUI.Prefabs.Interactions.Interactors;
+
+namespace Tillia.VRTKUI.Prefabs.Interactions.Haptics
 {
     using UnityEngine;
     using Malimbe.MemberChangeMethod;
@@ -6,7 +8,7 @@
     using Malimbe.PropertySerializationAttribute;
     using Zinnia.Data.Attribute;
     using Zinnia.Data.Collection.List;
-    using VRTK.Prefabs.Interactions.Interactors;
+    using VRTKUI.Prefabs.Interactions.Interactors;
 
     public class InteractorHapticsFacade : MonoBehaviour
     {

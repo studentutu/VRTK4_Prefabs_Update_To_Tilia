@@ -1,4 +1,4 @@
-﻿namespace VRTK.Prefabs.Interactions.Interactables.Grab.Receiver
+﻿namespace Tillia.VRTKUI.Prefabs.Interactions.Interactables.Grab.Receiver
 {
     using UnityEngine;
     using Malimbe.MemberChangeMethod;

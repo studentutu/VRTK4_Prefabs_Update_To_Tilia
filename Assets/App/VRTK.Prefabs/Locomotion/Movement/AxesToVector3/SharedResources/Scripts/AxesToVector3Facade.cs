@@ -1,4 +1,4 @@
-﻿namespace VRTK.Prefabs.Locomotion.Movement.AxesToVector3
+﻿namespace Tillia.VRTKUI.Prefabs.Locomotion.Movement.AxesToVector3
 {
     using System;
     using UnityEngine;

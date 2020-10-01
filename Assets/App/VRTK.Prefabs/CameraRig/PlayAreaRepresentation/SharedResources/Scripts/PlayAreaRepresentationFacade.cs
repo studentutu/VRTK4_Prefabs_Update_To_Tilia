@@ -1,4 +1,4 @@
-﻿namespace VRTK.Prefabs.PlayAreaRepresentation
+﻿namespace Tillia.VRTKUI.Prefabs.PlayAreaRepresentation
 {
     using UnityEngine;
     using Malimbe.MemberClearanceMethod;

@@ -1,25 +1,9 @@
 ﻿// UI Draggable Item|UI|80030
-namespace VRTK
+namespace Tillia.VRTKUI
 {
     using UnityEngine;
     using UnityEngine.EventSystems;
-
-    /// <summary>
-    /// Event Payload
-    /// </summary>
-    /// <param name="target">The target the item is dragged onto.</param>
-    public struct UIDraggableItemEventArgs
-    {
-        public GameObject target;
-    }
-
-    /// <summary>
-    /// Event Payload
-    /// </summary>
-    /// <param name="sender">this object</param>
-    /// <param name="e"><see cref="UIDraggableItemEventArgs"/></param>
-    public delegate void UIDraggableItemEventHandler(object sender, UIDraggableItemEventArgs e);
-
+    
     /// <summary>
     /// Denotes a Unity UI Element as being draggable on the UI Canvas.
     /// </summary>
@@ -33,9 +17,24 @@ namespace VRTK
     /// `VRTK/Examples/034_Controls_InteractingWithUnityUI` demonstrates a collection of UI elements that are draggable
     /// </example>
     [RequireComponent(typeof(CanvasGroup))]
-    [AddComponentMenu("VRTK/Scripts/UI/VRTK_UIDraggableItem")]
-    public class VRTK_UIDraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+    public class VRTK4_UIDraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
+        /// <summary>
+        /// Event Payload
+        /// </summary>
+        /// <param name="target">The target the item is dragged onto.</param>
+        public struct UIDraggableItemEventArgs
+        {
+            public GameObject target;
+        }
+
+        /// <summary>
+        /// Event Payload
+        /// </summary>
+        /// <param name="sender">this object</param>
+        /// <param name="e"><see cref="UIDraggableItemEventArgs"/></param>
+        public delegate void UIDraggableItemEventHandler(object sender, UIDraggableItemEventArgs e);
+        
         [Tooltip("If checked then the UI element can only be dropped in valid a VRTK_UIDropZone object and must start as a child of a VRTK_UIDropZone object. If unchecked then the UI element can be dropped anywhere on the canvas.")]
         public bool restrictToDropZone = false;
         [Tooltip("If checked then the UI element can only be dropped on the original parent canvas. If unchecked the UI element can be dropped on any valid VRTK_UICanvas.")]
@@ -92,12 +91,12 @@ namespace VRTK
 
             if (restrictToDropZone)
             {
-                startDropZone = GetComponentInParent<VRTK_UIDropZone>().gameObject;
+                startDropZone = GetComponentInParent<VRTK4_UIDropZone>().gameObject;
                 validDropZone = startDropZone;
             }
 
             SetDragPosition(eventData);
-            VRTK_UIPointer pointer = GetPointer(eventData);
+            VRTK4_UIPointer pointer = GetPointer(eventData);
             if (pointer != null)
             {
                 pointer.OnUIPointerElementDragStart(pointer.SetUIPointerEvent(pointer.pointerEventData.pointerPressRaycast, gameObject));
@@ -147,7 +146,7 @@ namespace VRTK
 
             if (validDragEnd)
             {
-                VRTK_UIPointer pointer = GetPointer(eventData);
+                VRTK4_UIPointer pointer = GetPointer(eventData);
                 if (pointer != null)
                 {
                     pointer.OnUIPointerElementDragEnd(pointer.SetUIPointerEvent(pointer.pointerEventData.pointerPressRaycast, gameObject));
@@ -163,16 +162,16 @@ namespace VRTK
         protected virtual void OnEnable()
         {
             canvasGroup = GetComponent<CanvasGroup>();
-            if (restrictToDropZone && GetComponentInParent<VRTK_UIDropZone>() == null)
+            if (restrictToDropZone && GetComponentInParent<VRTK4_UIDropZone>() == null)
             {
                 enabled = false;
-                VRTK_Logger.Error(VRTK_Logger.GetCommonMessage(VRTK_Logger.CommonMessageKeys.REQUIRED_COMPONENT_MISSING_FROM_GAMEOBJECT, "VRTK_UIDraggableItem", "VRTK_UIDropZone", "the parent", " if `freeDrop = false`"));
+                VRTK4_Logger.Error(VRTK4_Logger.GetCommonMessage(VRTK4_Logger.CommonMessageKeys.REQUIRED_COMPONENT_MISSING_FROM_GAMEOBJECT, "VRTK_UIDraggableItem", "VRTK_UIDropZone", "the parent", " if `freeDrop = false`"));
             }
         }
 
-        protected virtual VRTK_UIPointer GetPointer(PointerEventData eventData)
+        protected virtual VRTK4_UIPointer GetPointer(PointerEventData eventData)
         {
-            return VRTK_UIPointer.GetByEventData(eventData);
+            return VRTK4_UIPointer.GetByEventData(eventData);
         }
 
         protected virtual void SetDragPosition(PointerEventData eventData)

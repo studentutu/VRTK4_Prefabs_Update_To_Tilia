@@ -1,4 +1,4 @@
-﻿namespace VRTK.Prefabs.Locomotion.Movement.MovementAmplifier
+﻿namespace Tillia.VRTKUI.Prefabs.Locomotion.Movement.MovementAmplifier
 {
     using UnityEngine;
     using Malimbe.MemberChangeMethod;

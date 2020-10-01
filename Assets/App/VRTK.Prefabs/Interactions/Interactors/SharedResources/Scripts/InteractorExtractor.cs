@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine.Events;
 
-namespace VRTK.Prefabs.Interactions.Interactors
+namespace Tillia.VRTKUI.Prefabs.Interactions.Interactors
 {
     using UnityEngine;
     using Zinnia.Data.Operation.Extraction;

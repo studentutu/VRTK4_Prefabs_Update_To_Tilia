@@ -1,4 +1,6 @@
-﻿namespace VRTK.Prefabs.CameraRig.SimulatedCameraRig
+﻿using Tillia.VRTKUI.Prefabs.CameraRig.SimulatedCameraRig.Input;
+
+namespace Tillia.VRTKUI.Prefabs.CameraRig.SimulatedCameraRig
 {
     using UnityEngine;
     using System.Collections.Generic;
@@ -7,7 +9,7 @@
     using Malimbe.PropertySerializationAttribute;
     using Zinnia.Extension;
     using Zinnia.Data.Type.Transformation.Aggregation;
-    using VRTK.Prefabs.CameraRig.SimulatedCameraRig.Input;
+    using VRTKUI.Prefabs.CameraRig.SimulatedCameraRig.Input;
 
     /// <summary>
     /// Sets up the active controllable objects.

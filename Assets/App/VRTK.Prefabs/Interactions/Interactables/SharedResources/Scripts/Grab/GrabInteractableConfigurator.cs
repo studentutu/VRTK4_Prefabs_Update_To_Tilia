@@ -1,4 +1,9 @@
-﻿namespace VRTK.Prefabs.Interactions.Interactables.Grab
+﻿using Tillia.VRTKUI.Prefabs.Interactions.Interactables.Grab.Action;
+using Tillia.VRTKUI.Prefabs.Interactions.Interactables.Grab.Provider;
+using Tillia.VRTKUI.Prefabs.Interactions.Interactables.Grab.Receiver;
+using Tillia.VRTKUI.Prefabs.Interactions.Interactors;
+
+namespace Tillia.VRTKUI.Prefabs.Interactions.Interactables.Grab
 {
     using UnityEngine;
     using System.Collections.Generic;
@@ -8,10 +13,10 @@
     using Malimbe.PropertySerializationAttribute;
     using Zinnia.Extension;
     using Zinnia.Data.Attribute;
-    using VRTK.Prefabs.Interactions.Interactors;
-    using VRTK.Prefabs.Interactions.Interactables.Grab.Action;
-    using VRTK.Prefabs.Interactions.Interactables.Grab.Receiver;
-    using VRTK.Prefabs.Interactions.Interactables.Grab.Provider;
+    using VRTKUI.Prefabs.Interactions.Interactors;
+    using VRTKUI.Prefabs.Interactions.Interactables.Grab.Action;
+    using VRTKUI.Prefabs.Interactions.Interactables.Grab.Receiver;
+    using VRTKUI.Prefabs.Interactions.Interactables.Grab.Provider;
 
     /// <summary>
     /// Sets up the Interactable Prefab grab settings based on the provided user settings.

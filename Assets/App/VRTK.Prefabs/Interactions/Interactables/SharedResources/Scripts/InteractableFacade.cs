@@ -1,4 +1,8 @@
-﻿namespace VRTK.Prefabs.Interactions.Interactables
+﻿using Tillia.VRTKUI.Prefabs.Interactions.Interactables.Grab;
+using Tillia.VRTKUI.Prefabs.Interactions.Interactables.Touch;
+using Tillia.VRTKUI.Prefabs.Interactions.Interactors;
+
+namespace Tillia.VRTKUI.Prefabs.Interactions.Interactables
 {
     using UnityEngine;
     using UnityEngine.Events;
@@ -13,9 +17,9 @@
     using Zinnia.Data.Attribute;
     using Zinnia.Data.Collection.List;
     using Zinnia.Tracking.Collision;
-    using VRTK.Prefabs.Interactions.Interactors;
-    using VRTK.Prefabs.Interactions.Interactables.Touch;
-    using VRTK.Prefabs.Interactions.Interactables.Grab;
+    using VRTKUI.Prefabs.Interactions.Interactors;
+    using VRTKUI.Prefabs.Interactions.Interactables.Touch;
+    using VRTKUI.Prefabs.Interactions.Interactables.Grab;
 
     /// <summary>
     /// The public interface into the Interactable Prefab.

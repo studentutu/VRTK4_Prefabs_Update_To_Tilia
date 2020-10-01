@@ -1,4 +1,6 @@
-﻿namespace VRTK.Prefabs.Interactions.InteractorVisibilityModifier
+﻿using Tillia.VRTKUI.Prefabs.Interactions.Interactors;
+
+namespace Tillia.VRTKUI.Prefabs.Interactions.InteractorVisibilityModifier
 {
     using UnityEngine;
     using UnityEngine.Events;
@@ -7,7 +9,7 @@
     using Malimbe.PropertySerializationAttribute;
     using Malimbe.BehaviourStateRequirementMethod;
     using Zinnia.Data.Attribute;
-    using VRTK.Prefabs.Interactions.Interactors;
+    using VRTKUI.Prefabs.Interactions.Interactors;
 
     /// <summary>
     /// Provides a mechanism for showing and hiding Interactors.

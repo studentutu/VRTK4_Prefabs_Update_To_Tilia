@@ -1,4 +1,6 @@
-﻿namespace VRTK.Prefabs.Interactions.Interactors
+﻿using Tillia.VRTKUI.Prefabs.Interactions.Interactables;
+
+namespace Tillia.VRTKUI.Prefabs.Interactions.Interactors
 {
     using UnityEngine;
     using UnityEngine.Events;
@@ -13,7 +15,7 @@
     using Zinnia.Data.Type;
     using Zinnia.Data.Attribute;
     using Zinnia.Tracking.Velocity;
-    using VRTK.Prefabs.Interactions.Interactables;
+    using VRTKUI.Prefabs.Interactions.Interactables;
 
     /// <summary>
     /// The public interface into the Interactor Prefab.

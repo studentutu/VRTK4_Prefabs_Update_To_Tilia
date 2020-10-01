@@ -1,4 +1,6 @@
-﻿namespace VRTK.Prefabs.Interactions.Interactables.Touch
+﻿using Tillia.VRTKUI.Prefabs.Interactions.Interactors;
+
+namespace Tillia.VRTKUI.Prefabs.Interactions.Interactables.Touch
 {
     using UnityEngine;
     using System.Collections.Generic;
@@ -11,7 +13,7 @@
     using Zinnia.Tracking.Collision;
     using Zinnia.Tracking.Collision.Active;
     using Zinnia.Tracking.Collision.Active.Operation.Extraction;
-    using VRTK.Prefabs.Interactions.Interactors;
+    using VRTKUI.Prefabs.Interactions.Interactors;
 
     public class TouchInteractableConfigurator : MonoBehaviour
     {

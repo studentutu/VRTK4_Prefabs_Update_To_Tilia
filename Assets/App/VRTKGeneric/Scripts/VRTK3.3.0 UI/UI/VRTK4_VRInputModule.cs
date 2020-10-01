@@ -1,13 +1,13 @@
-﻿namespace VRTK
+﻿namespace Tillia.VRTKUI
 {
     using UnityEngine;
     using UnityEngine.EventSystems;
     using UnityEngine.UI;
     using System.Collections.Generic;
 
-    public class VRTK_VRInputModule : PointerInputModule
+    public class VRTK4_VRInputModule : PointerInputModule
     {
-        public List<VRTK_UIPointer> pointers = new List<VRTK_UIPointer>();
+        public List<VRTK4_UIPointer> pointers = new List<VRTK4_UIPointer>();
 
         public virtual void Initialise()
         {
@@ -24,7 +24,7 @@
         {
             for (int i = 0; i < pointers.Count; i++)
             {
-                VRTK_UIPointer pointer = pointers[i];
+                VRTK4_UIPointer pointer = pointers[i];
                 if (pointer.gameObject.activeInHierarchy && pointer.enabled)
                 {
                     List<RaycastResult> results = new List<RaycastResult>();
@@ -42,7 +42,7 @@
             }
         }
 
-        protected virtual List<RaycastResult> CheckRaycasts(VRTK_UIPointer pointer)
+        protected virtual List<RaycastResult> CheckRaycasts(VRTK4_UIPointer pointer)
         {
             RaycastResult raycastResult = new RaycastResult();
             raycastResult.worldPosition = pointer.GetOriginPosition();
@@ -70,12 +70,12 @@
             return CheckTransformTree(target.transform.parent, source);
         }
 
-        protected virtual bool NoValidCollision(VRTK_UIPointer pointer, List<RaycastResult> results)
+        protected virtual bool NoValidCollision(VRTK4_UIPointer pointer, List<RaycastResult> results)
         {
             return (results.Count == 0 || !CheckTransformTree(results[0].gameObject.transform, pointer.pointerEventData.pointerEnter.transform));
         }
 
-        protected virtual bool IsHovering(VRTK_UIPointer pointer)
+        protected virtual bool IsHovering(VRTK4_UIPointer pointer)
         {
             for (int i = 0; i < pointer.pointerEventData.hovered.Count; i++)
             {
@@ -90,11 +90,11 @@
 
         protected virtual bool ValidElement(GameObject obj)
         {
-            VRTK_UICanvas canvasCheck = obj.GetComponentInParent<VRTK_UICanvas>();
+            VRTK4_UICanvas canvasCheck = obj.GetComponentInParent<VRTK4_UICanvas>();
             return (canvasCheck != null && canvasCheck.enabled ? true : false);
         }
 
-        protected virtual void CheckPointerHoverClick(VRTK_UIPointer pointer, List<RaycastResult> results)
+        protected virtual void CheckPointerHoverClick(VRTK4_UIPointer pointer, List<RaycastResult> results)
         {
             if (pointer.hoverDurationTimer > 0f)
             {
@@ -108,7 +108,7 @@
             }
         }
 
-        protected virtual void Hover(VRTK_UIPointer pointer, List<RaycastResult> results)
+        protected virtual void Hover(VRTK4_UIPointer pointer, List<RaycastResult> results)
         {
             if (pointer.pointerEventData.pointerEnter != null)
             {
@@ -177,20 +177,20 @@
             }
         }
 
-        protected virtual void Click(VRTK_UIPointer pointer, List<RaycastResult> results)
+        protected virtual void Click(VRTK4_UIPointer pointer, List<RaycastResult> results)
         {
             switch (pointer.clickMethod)
             {
-                case VRTK_UIPointer.ClickMethods.ClickOnButtonUp:
+                case VRTK4_UIPointer.ClickMethods.ClickOnButtonUp:
                     ClickOnUp(pointer, results);
                     break;
-                case VRTK_UIPointer.ClickMethods.ClickOnButtonDown:
+                case VRTK4_UIPointer.ClickMethods.ClickOnButtonDown:
                     ClickOnDown(pointer, results);
                     break;
             }
         }
 
-        protected virtual void ClickOnUp(VRTK_UIPointer pointer, List<RaycastResult> results)
+        protected virtual void ClickOnUp(VRTK4_UIPointer pointer, List<RaycastResult> results)
         {
             pointer.pointerEventData.eligibleForClick = pointer.ValidClick(false);
 
@@ -200,7 +200,7 @@
             }
         }
 
-        protected virtual void ClickOnDown(VRTK_UIPointer pointer, List<RaycastResult> results, bool forceClick = false)
+        protected virtual void ClickOnDown(VRTK4_UIPointer pointer, List<RaycastResult> results, bool forceClick = false)
         {
             pointer.pointerEventData.eligibleForClick = (forceClick ? true : pointer.ValidClick(true));
 
@@ -211,7 +211,7 @@
             }
         }
 
-        protected virtual bool IsEligibleClick(VRTK_UIPointer pointer, List<RaycastResult> results)
+        protected virtual bool IsEligibleClick(VRTK4_UIPointer pointer, List<RaycastResult> results)
         {
             if (pointer.pointerEventData.eligibleForClick)
             {
@@ -237,7 +237,7 @@
             return false;
         }
 
-        protected virtual bool AttemptClick(VRTK_UIPointer pointer)
+        protected virtual bool AttemptClick(VRTK4_UIPointer pointer)
         {
             if (pointer.pointerEventData.pointerPress)
             {
@@ -267,7 +267,7 @@
             return false;
         }
 
-        protected virtual void Drag(VRTK_UIPointer pointer, List<RaycastResult> results)
+        protected virtual void Drag(VRTK4_UIPointer pointer, List<RaycastResult> results)
         {
             pointer.pointerEventData.dragging = pointer.IsSelectionButtonPressed() && pointer.pointerEventData.delta != Vector2.zero;
 
@@ -319,7 +319,7 @@
             }
         }
 
-        protected virtual void Scroll(VRTK_UIPointer pointer, List<RaycastResult> results)
+        protected virtual void Scroll(VRTK4_UIPointer pointer, List<RaycastResult> results)
         {
             pointer.pointerEventData.scrollDelta = (pointer.axisAction != null ? pointer.axisAction.Value : Vector2.zero);
             bool scrollWheelVisible = false;

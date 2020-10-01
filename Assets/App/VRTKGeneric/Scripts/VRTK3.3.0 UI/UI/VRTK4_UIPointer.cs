@@ -2,36 +2,12 @@
 
 using Zinnia.Action;
 
-namespace VRTK
+namespace Tillia.VRTKUI
 {
     using UnityEngine;
     using UnityEngine.EventSystems;
     using System.Collections.Generic;
-
-    /// <summary>
-    /// Event Payload
-    /// </summary>
-    /// <param name="controllerReference">The reference to the controller that was used.</param>
-    /// <param name="isActive">The state of whether the UI Pointer is currently active or not.</param>
-    /// <param name="currentTarget">The current UI element that the pointer is colliding with.</param>
-    /// <param name="previousTarget">The previous UI element that the pointer was colliding with.</param>
-    /// <param name="raycastResult">The raw raycast result of the UI ray collision.</param>
-    public struct UIPointerEventArgs
-    {
-        public int UIPointerId;
-        public bool isActive;
-        public GameObject currentTarget;
-        public GameObject previousTarget;
-        public RaycastResult raycastResult;
-    }
-
-    /// <summary>
-    /// Event Payload
-    /// </summary>
-    /// <param name="sender">this object</param>
-    /// <param name="e"><see cref="UIPointerEventArgs"/></param>
-    public delegate void UIPointerEventHandler(object sender, UIPointerEventArgs e);
-
+    
     /// <summary>
     /// Provides the ability to interact with UICanvas elements and the contained Unity UI elements within.
     /// </summary>
@@ -51,15 +27,39 @@ namespace VRTK
     /// `VRTK/Examples/034_Controls_InteractingWithUnityUI` uses the `VRTK_UIPointer` script on the right Controller to allow for the interaction with Unity UI elements using a Simple Pointer beam. The left Controller controls a Simple Pointer on the headset to demonstrate gaze interaction with Unity UI elements.
     /// </example>
     [AddComponentMenu("VRTK/Scripts/UI/VRTK_UIPointer")]
-    public class VRTK_UIPointer : MonoBehaviour
+    public class VRTK4_UIPointer : MonoBehaviour
     {
-        private static List<VRTK_UIPointer> VrtkUiPointers = new List<VRTK_UIPointer>();
+        private static List<VRTK4_UIPointer> VrtkUiPointers = new List<VRTK4_UIPointer>();
         
         /// <summary>
         /// Event Payload
         /// </summary>
+        /// <param name="controllerReference">The reference to the controller that was used.</param>
+        /// <param name="isActive">The state of whether the UI Pointer is currently active or not.</param>
+        /// <param name="currentTarget">The current UI element that the pointer is colliding with.</param>
+        /// <param name="previousTarget">The previous UI element that the pointer was colliding with.</param>
+        /// <param name="raycastResult">The raw raycast result of the UI ray collision.</param>
+        public struct VRTK4UIPointerEventArgs
+        {
+            public int UIPointerId;
+            public bool isActive;
+            public GameObject currentTarget;
+            public GameObject previousTarget;
+            public RaycastResult raycastResult;
+        }
+
+        /// <summary>
+        /// Event Payload
+        /// </summary>
         /// <param name="sender">this object</param>
-        public delegate void UIControllerInteractionEvent (VRTK_UIPointer sender);
+        /// <param name="e"><see cref="VRTK4UIPointerEventArgs"/></param>
+        public delegate void UIPointerEventHandler(object sender, VRTK4UIPointerEventArgs e);
+
+        /// <summary>
+        /// Event Payload
+        /// </summary>
+        /// <param name="sender">this object</param>
+        public delegate void UIControllerInteractionEvent (VRTK4_UIPointer sender);
 
         
         /// <summary>
@@ -173,7 +173,7 @@ namespace VRTK
         protected GameObject currentTarget;
 
         protected EventSystem cachedEventSystem;
-        protected VRTK_VRInputModule cachedVRInputModule;
+        protected VRTK4_VRInputModule cachedVRInputModule;
 
         /// <summary>
         /// The GetPointerLength method retrieves the maximum UI Pointer length for the given pointer ID.
@@ -182,10 +182,10 @@ namespace VRTK
         /// <returns>The maximum length the UI Pointer will cast to.</returns>
         public static float GetPointerLength(int pointerId)
         {
-            return VRTK_SharedMethods.GetDictionaryValue(pointerLengths, pointerId, float.MaxValue);
+            return VRTK4_SharedMethods.GetDictionaryValue(pointerLengths, pointerId, float.MaxValue);
         }
 
-        public virtual void OnUIPointerElementEnter(UIPointerEventArgs e)
+        public virtual void OnUIPointerElementEnter(VRTK4UIPointerEventArgs e)
         {
             if (e.currentTarget != currentTarget)
             {
@@ -205,7 +205,7 @@ namespace VRTK
             }
         }
 
-        public virtual void OnUIPointerElementExit(UIPointerEventArgs e)
+        public virtual void OnUIPointerElementExit(VRTK4UIPointerEventArgs e)
         {
             if (e.previousTarget == currentTarget)
             {
@@ -222,7 +222,7 @@ namespace VRTK
             }
         }
 
-        public virtual void OnUIPointerElementClick(UIPointerEventArgs e)
+        public virtual void OnUIPointerElementClick(VRTK4UIPointerEventArgs e)
         {
             if (e.currentTarget == currentTarget)
             {
@@ -235,7 +235,7 @@ namespace VRTK
             }
         }
 
-        public virtual void OnUIPointerElementDragStart(UIPointerEventArgs e)
+        public virtual void OnUIPointerElementDragStart(VRTK4UIPointerEventArgs e)
         {
             if (UIPointerElementDragStart != null)
             {
@@ -243,7 +243,7 @@ namespace VRTK
             }
         }
 
-        public virtual void OnUIPointerElementDragEnd(UIPointerEventArgs e)
+        public virtual void OnUIPointerElementDragEnd(VRTK4UIPointerEventArgs e)
         {
             if (UIPointerElementDragEnd != null)
             {
@@ -283,7 +283,7 @@ namespace VRTK
             }
         }
 
-        public static VRTK_UIPointer GetByEventData(PointerEventData eventData)
+        public static VRTK4_UIPointer GetByEventData(PointerEventData eventData)
         {
             foreach (var pointer in VrtkUiPointers)
             {
@@ -322,9 +322,10 @@ namespace VRTK
             return -1;
         }
 
-        public virtual UIPointerEventArgs SetUIPointerEvent(RaycastResult currentRaycastResult, GameObject currentTarget, GameObject lastTarget = null)
+        public virtual VRTK4UIPointerEventArgs SetUIPointerEvent(RaycastResult currentRaycastResult, 
+            GameObject currentTarget, GameObject lastTarget = null)
         {
-            UIPointerEventArgs e;
+            VRTK4UIPointerEventArgs e;
             e.UIPointerId = GetIndexOfUIPointer();
             e.isActive = PointerActive();
             e.currentTarget = currentTarget;
@@ -338,20 +339,20 @@ namespace VRTK
         /// </summary>
         /// <param name="eventSystem">The global Unity event system to be used by the UI pointers.</param>
         /// <returns>A custom input module that is used to detect input from VR pointers.</returns>
-        public virtual VRTK_VRInputModule SetEventSystem(EventSystem eventSystem)
+        public virtual VRTK4_VRInputModule SetEventSystem(EventSystem eventSystem)
         {
             if (eventSystem == null)
             {
-                VRTK_Logger.Error(VRTK_Logger.GetCommonMessage(VRTK_Logger.CommonMessageKeys.REQUIRED_COMPONENT_MISSING_FROM_SCENE, "VRTK_UIPointer", "EventSystem"));
+                VRTK4_Logger.Error(VRTK4_Logger.GetCommonMessage(VRTK4_Logger.CommonMessageKeys.REQUIRED_COMPONENT_MISSING_FROM_SCENE, "VRTK_UIPointer", "EventSystem"));
                 return null;
             }
 
-            if (!(eventSystem is VRTK_EventSystem))
+            if (!(eventSystem is VRTK4_EventSystem))
             {
-                eventSystem = eventSystem.gameObject.AddComponent<VRTK_EventSystem>();
+                eventSystem = eventSystem.gameObject.AddComponent<VRTK4_EventSystem>();
             }
 
-            return eventSystem.GetComponent<VRTK_VRInputModule>();
+            return eventSystem.GetComponent<VRTK4_VRInputModule>();
         }
 
         /// <summary>
@@ -359,15 +360,15 @@ namespace VRTK
         /// </summary>
         public virtual void RemoveEventSystem()
         {
-            VRTK_EventSystem vrtkEventSystem = FindObjectOfType<VRTK_EventSystem>();
+            VRTK4_EventSystem vrtk4EventSystem = FindObjectOfType<VRTK4_EventSystem>();
 
-            if (vrtkEventSystem == null)
+            if (vrtk4EventSystem == null)
             {
-                VRTK_Logger.Error(VRTK_Logger.GetCommonMessage(VRTK_Logger.CommonMessageKeys.REQUIRED_COMPONENT_MISSING_FROM_SCENE, "VRTK_UIPointer", "EventSystem"));
+                VRTK4_Logger.Error(VRTK4_Logger.GetCommonMessage(VRTK4_Logger.CommonMessageKeys.REQUIRED_COMPONENT_MISSING_FROM_SCENE, "VRTK_UIPointer", "EventSystem"));
                 return;
             }
 
-            Destroy(vrtkEventSystem);
+            Destroy(vrtk4EventSystem);
         }
 
         /// <summary>
@@ -498,7 +499,7 @@ namespace VRTK
         protected virtual void LateUpdate()
         {
             pointerEventData.pointerId = GetIndexOfUIPointer();
-            VRTK_SharedMethods.AddDictionaryValue(pointerLengths, pointerEventData.pointerId, maximumLength, true);
+            VRTK4_SharedMethods.AddDictionaryValue(pointerLengths, pointerEventData.pointerId, maximumLength, true);
         }
 
         protected virtual void ResetHoverTimer()

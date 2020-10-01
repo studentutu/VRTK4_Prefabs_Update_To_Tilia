@@ -1,4 +1,6 @@
-﻿namespace VRTK.Prefabs.Interactions.Interactables.Grab
+﻿using Tillia.VRTKUI.Prefabs.Interactions.Interactors;
+
+namespace Tillia.VRTKUI.Prefabs.Interactions.Interactables.Grab
 {
     using UnityEngine;
     using UnityEngine.Events;
@@ -8,7 +10,7 @@
     using Malimbe.XmlDocumentationAttribute;
     using Malimbe.PropertySerializationAttribute;
     using Malimbe.BehaviourStateRequirementMethod;
-    using VRTK.Prefabs.Interactions.Interactors;
+    using VRTKUI.Prefabs.Interactions.Interactors;
 
     /// <summary>
     /// Registers listeners to the initial grab and final ungrab states of an <see cref="InteractableFacade"/> and emits the <see cref="InteractableFacade"/> as the event payload.

@@ -1,4 +1,4 @@
-﻿namespace VRTK.Prefabs.Locomotion.Teleporters
+﻿namespace Tillia.VRTKUI.Prefabs.Locomotion.Teleporters
 {
     using UnityEngine;
     using System.Collections.Generic;
