@@ -283,6 +283,45 @@ namespace VRTK
             }
         }
 
+        public static VRTK_UIPointer GetByEventData(PointerEventData eventData)
+        {
+            foreach (var pointer in VrtkUiPointers)
+            {
+                if (pointer.currentTarget == eventData.pointerCurrentRaycast.gameObject)
+                {
+                    return pointer;
+                }
+                if (eventData.selectedObject == pointer.currentTarget)
+                {
+                    return pointer;
+                }
+                
+
+                foreach (var hoveredWith in eventData.hovered)
+                {
+                    if (pointer.gameObject == hoveredWith || pointer.currentTarget == hoveredWith)
+                    {
+                        return pointer;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        private int GetIndexOfUIPointer()
+        {
+            for (int i = 0; i < VrtkUiPointers.Count; i++)
+            {
+                if (VrtkUiPointers[i] == this)
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+
         public virtual UIPointerEventArgs SetUIPointerEvent(RaycastResult currentRaycastResult, GameObject currentTarget, GameObject lastTarget = null)
         {
             UIPointerEventArgs e;
@@ -342,22 +381,20 @@ namespace VRTK
             {
                 return true;
             }
-            else
+            
+            pointerClicked = false;
+            if (IsActivationButtonPressed() && !lastPointerPressState)
             {
-                pointerClicked = false;
-                if (IsActivationButtonPressed() && !lastPointerPressState)
-                {
-                    pointerClicked = true;
-                }
-                lastPointerPressState = activationButton.Value;
-
-                if (pointerClicked)
-                {
-                    beamEnabledState = !beamEnabledState;
-                }
-
-                return beamEnabledState;
+                pointerClicked = true;
             }
+            lastPointerPressState = activationButton.Value;
+
+            if (pointerClicked)
+            {
+                beamEnabledState = !beamEnabledState;
+            }
+
+            return beamEnabledState;
         }
 
         /// <summary>
@@ -408,11 +445,6 @@ namespace VRTK
         public virtual Vector3 GetOriginForward()
         {
             return (customOrigin != null ? customOrigin : transform).forward;
-        }
-
-        protected virtual void Awake()
-        {
-            VRTK_SDKManager.AttemptAddBehaviourToToggleOnLoadedSetupChange(this);
         }
 
         protected virtual void OnEnable()
@@ -467,19 +499,6 @@ namespace VRTK
         {
             pointerEventData.pointerId = GetIndexOfUIPointer();
             VRTK_SharedMethods.AddDictionaryValue(pointerLengths, pointerEventData.pointerId, maximumLength, true);
-        }
-
-        private int GetIndexOfUIPointer()
-        {
-            for (int i = 0; i < VrtkUiPointers.Count; i++)
-            {
-                if (VrtkUiPointers[i] == this)
-                {
-                    return i;
-                }
-            }
-
-            return -1;
         }
 
         protected virtual void ResetHoverTimer()

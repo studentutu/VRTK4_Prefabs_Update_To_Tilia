@@ -106,17 +106,7 @@ namespace VRTK
             }
             return true;
         }
-
-        /// <summary>
-        /// The AddCameraFade method finds the headset camera and adds a headset fade script to it.
-        /// </summary>
-        /// <returns>The transform of the headset camera.</returns>
-        public static Transform AddCameraFade()
-        {
-            Transform camera = VRTK_DeviceFinder.HeadsetCamera();
-            VRTK_SDK_Bridge.AddHeadsetFade(camera);
-            return camera;
-        }
+        
 
         /// <summary>
         /// The CreateColliders method attempts to add box colliders to all child objects in the given object that have a renderer but no collider.

@@ -51113,6 +51113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8129003591445830761}
   - component: {fileID: 8129003591445830767}
+  - component: {fileID: 1733486483}
   m_Layer: 0
   m_Name: PointsRenderer
   m_TagString: Untagged
@@ -51150,6 +51151,31 @@ MonoBehaviour:
   start: {fileID: 0}
   repeatedSegment: {fileID: 0}
   end: {fileID: 0}
+--- !u!114 &1733486483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8129003591445830764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71b26f999cbdac8478b6c2a046256169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axisAction: {fileID: 0}
+  activationButton: {fileID: 8129003590527208277}
+  selectionButton: {fileID: 8129003590295737891}
+  clickMethod: 0
+  attemptClickOnDeactivate: 0
+  clickAfterHoverDuration: 0
+  maximumLength: Infinity
+  customOrigin: {fileID: 0}
+  hoveringElement: {fileID: 0}
+  hoverDurationTimer: 0
+  canClickOnHover: 0
+  autoActivatingCanvas: {fileID: 0}
+  collisionClick: 0
 --- !u!1 &8129003591452577455
 GameObject:
   m_ObjectHideFlags: 0

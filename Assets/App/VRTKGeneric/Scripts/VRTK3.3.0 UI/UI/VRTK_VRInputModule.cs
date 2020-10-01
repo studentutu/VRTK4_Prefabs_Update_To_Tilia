@@ -321,23 +321,14 @@
 
         protected virtual void Scroll(VRTK_UIPointer pointer, List<RaycastResult> results)
         {
-            pointer.pointerEventData.scrollDelta = (pointer.controllerEvents != null ? pointer.controllerEvents.GetTouchpadAxis() : Vector2.zero);
+            pointer.pointerEventData.scrollDelta = (pointer.axisAction != null ? pointer.axisAction.Value : Vector2.zero);
             bool scrollWheelVisible = false;
             for (int i = 0; i < results.Count; i++)
             {
                 if (pointer.pointerEventData.scrollDelta != Vector2.zero)
                 {
-                    GameObject target = ExecuteEvents.ExecuteHierarchy(results[i].gameObject, pointer.pointerEventData, ExecuteEvents.scrollHandler);
-                    if (target != null)
-                    {
-                        scrollWheelVisible = true;
-                    }
+                    ExecuteEvents.ExecuteHierarchy(results[i].gameObject, pointer.pointerEventData, ExecuteEvents.scrollHandler);
                 }
-            }
-
-            if (pointer.controllerRenderModel != null)
-            {
-                VRTK_SDK_Bridge.SetControllerRenderModelWheel(pointer.controllerRenderModel, scrollWheelVisible);
             }
         }
     }

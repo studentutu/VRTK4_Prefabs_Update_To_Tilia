@@ -172,8 +172,7 @@ namespace VRTK
 
         protected virtual VRTK_UIPointer GetPointer(PointerEventData eventData)
         {
-            GameObject controller = VRTK_DeviceFinder.GetControllerByIndex((uint)eventData.pointerId, false);
-            return (controller != null ? controller.GetComponent<VRTK_UIPointer>() : null);
+            return VRTK_UIPointer.GetByEventData(eventData);
         }
 
         protected virtual void SetDragPosition(PointerEventData eventData)
