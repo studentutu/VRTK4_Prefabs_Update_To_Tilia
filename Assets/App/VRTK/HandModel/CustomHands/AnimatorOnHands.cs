@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace MapstarVr
+namespace Tillia.VRTK
 {
     [DisallowMultipleComponent]
     public class AnimatorOnHands : MonoBehaviour
