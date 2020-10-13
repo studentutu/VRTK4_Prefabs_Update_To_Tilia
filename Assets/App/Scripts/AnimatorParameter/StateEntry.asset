@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 047b0cf9d25a3db48947abc1fe9e6829, type: 3}
+  m_Name: StateEntry
+  m_EditorClassIdentifier: 
+  parameters:
+  - keyName: "\u0432\u0430\u0456\u0432\u0430"
+    indexOfLayer: 2
+    nameHash: -778907946
+    type: 0
+    boolValue: 0
+    intValue: 0
+    floatValue: 2.19
+    triggerValue: 0
+  - keyName: "\u0432\u0430\u0456\u0432\u0430"
+    indexOfLayer: 0
+    nameHash: -778907946
+    type: 3
+    boolValue: 0
+    intValue: 0
+    floatValue: 0
+    triggerValue: 0
+  - keyName: "\u0432\u0430\u0456\u0432\u0430"
+    indexOfLayer: 0
+    nameHash: -778907946
+    type: 3
+    boolValue: 0
+    intValue: 0
+    floatValue: 0
+    triggerValue: 0
