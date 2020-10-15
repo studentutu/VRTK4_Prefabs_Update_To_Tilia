@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Zinnia.Tracking.CameraRig;
 
 namespace FusedVR
@@ -20,6 +21,10 @@ namespace FusedVR
         [SerializeField] private InputControl hands;
         [Tooltip("Physical Controller Input Control Scheme")]
         [SerializeField] private InputControl controllers;
+        
+        [SerializeField] private UnityEvent handInputEventEnabled = new UnityEvent();
+        [SerializeField] private UnityEvent handInputEventDisabled = new UnityEvent();
+
         
         private OVRPlugin.Controller currControl = OVRPlugin.Controller.None; //variable to keep tracking of current input mechanism
         
@@ -50,14 +55,28 @@ namespace FusedVR
         private void Swap(OVRPlugin.Controller controller) 
         {
             bool swap = (controller == OVRPlugin.Controller.Hands); //if hands then true otherwise false
+            if (swap)
+            {
+                handInputEventEnabled?.Invoke();
+            }
+            else
+            {
+                handInputEventDisabled?.Invoke();
+            }
+
             hands.Show(swap);
-            controllers.Show(!swap);
+
+            if (controllers != null)
+            {
+                controllers.Show(!swap);
+            }
 
             if ( swap && ovrRig ) 
             { // if hands, because the hand data forward is incorrectly offset by 90 degrees
                 ovrRig.LeftController.transform.localRotation = Quaternion.Euler(0f , 90f , 0f);
                 ovrRig.RightController.transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
-            } else if ( ovrRig ) 
+            } 
+            else if ( ovrRig) 
             { //if controllers, reset back to identity
                 ovrRig.LeftController.transform.localRotation = Quaternion.identity;
                 ovrRig.RightController.transform.localRotation = Quaternion.identity;
@@ -74,6 +93,11 @@ namespace FusedVR
         public float GetAxis(InputControl.Hand hand , InputControl.Button button) 
         {
             InputControl control = (currControl == OVRPlugin.Controller.Hands) ? hands : controllers;
+            if (control == null)
+            {
+                return 0;
+            }
+
             return control.GetAxis(hand, button);
         }
 
@@ -86,6 +110,10 @@ namespace FusedVR
         public bool GetButton(InputControl.Hand hand, InputControl.Button button) 
         {
             InputControl control = (currControl == OVRPlugin.Controller.Hands) ? hands : controllers;
+            if (control == null)
+            {
+                return false;
+            }
             return control.GetButton(hand , button);
         }
     }

@@ -1,4 +1,6 @@
-﻿namespace FusedVR 
+﻿using System;
+
+namespace FusedVR 
 {
     /// <summary>
     /// This class represents a mapping for the control scheme used for Touch Controllers

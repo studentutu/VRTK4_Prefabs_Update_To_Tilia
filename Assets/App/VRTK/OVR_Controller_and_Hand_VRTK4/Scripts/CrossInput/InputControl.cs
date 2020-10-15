@@ -25,10 +25,13 @@ namespace FusedVR
         
         
         [Tooltip("A reference to the left hand tracking prefab")]
-        [SerializeField] protected GameObject leftHand;
+        [SerializeField] protected OVRInputMark leftHand;
         
         [Tooltip("A reference to the right hand tracking prefab")]
-        [SerializeField] protected GameObject rightHand;
+        [SerializeField] protected OVRInputMark rightHand;
+        
+        [Tooltip("A reference to the inputs")]
+        [SerializeField] protected GameObject RootInputToEnable;
         
         /// <summary>
         /// Whether or not to show the visuals for this controller
@@ -36,8 +39,17 @@ namespace FusedVR
         /// <param name="show">True = show. False = to hide.</param>
         public virtual void Show(bool show) 
         {
-            if ( leftHand ) leftHand.SetActive(show);
-            if ( rightHand ) rightHand.SetActive(show);
+            RootInputToEnable.SetActive(show);
+            
+            if (leftHand)
+            {
+                leftHand.gameObject.SetActive(show);
+            }
+            
+            if ( rightHand )
+            {
+                rightHand.gameObject.SetActive(show);
+            }
         }
 
         /// <summary>

@@ -73,8 +73,8 @@ namespace FusedVR
         /// <returns>A bool indicating whether the given button has been pressed</returns>
         public override bool GetButton(Hand h, Button b) 
         {
-            GameObject handObj = (h == Hand.Left) ? leftHand : rightHand;
-            OVRHand hand = handObj.GetComponent<OVRHand>();
+            var handObj = (h == Hand.Left) ? leftHand : rightHand;
+            OVRHand hand = handObj.ActualOvrHand;
             HandFinger finger = FingerMap(b);
 
             if ( hand && hand.GetFingerConfidence(finger) == TrackingConfidence.High ) 
@@ -93,8 +93,8 @@ namespace FusedVR
         /// <returns>A float from 0-1 indicating how much the input has been pressed</returns>
         public override float GetAxis(Hand h, Button b) 
         {
-            GameObject handObj = (h == Hand.Left) ? leftHand : rightHand;
-            OVRHand hand = handObj.GetComponent<OVRHand>();
+            var handObj = (h == Hand.Left) ? leftHand : rightHand;
+            OVRHand hand = handObj.ActualOvrHand;
             HandFinger finger = FingerMap(b);
 
             if ( hand && hand.GetFingerConfidence(finger) == TrackingConfidence.High ) 
