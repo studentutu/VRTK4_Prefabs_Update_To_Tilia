@@ -1,0 +1,1 @@
+This feature is usefull if you need to serialize scriptable objects into json and deserialize them from it.
