@@ -9,7 +9,7 @@ using Tillia.VRTKUI;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Tillia.VRTK
+namespace MapstarVr.Services
 {
     /// <summary>
     /// Contains the animations for the head, hands,body, pointers, UI pointers
