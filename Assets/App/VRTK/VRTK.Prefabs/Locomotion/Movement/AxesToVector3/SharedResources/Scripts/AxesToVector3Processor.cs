@@ -1,4 +1,4 @@
-﻿namespace Tillia.VRTKUI.Prefabs.Locomotion.Movement.AxesToVector3
+﻿namespace Tilia.VRTKUI.Prefabs.Locomotion.Movement.AxesToVector3
 {
     using UnityEngine;
     using Malimbe.XmlDocumentationAttribute;

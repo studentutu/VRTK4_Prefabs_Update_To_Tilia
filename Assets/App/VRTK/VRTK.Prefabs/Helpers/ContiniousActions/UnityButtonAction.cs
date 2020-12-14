@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Tillia.VRTKUI.Prefabs.CameraRig.UnityXRCameraRig.Input
+namespace Tilia.VRTKUI.Prefabs.CameraRig.UnityXRCameraRig.Input
 {
     using UnityEngine;
     using Zinnia.Action;

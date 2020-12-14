@@ -1,7 +1,7 @@
 ﻿using Tilia.Input.UnityInputManager;
 using Zinnia.Action;
 
-namespace Tillia.VRTKUI.Prefabs.CameraRig.SimulatedCameraRig
+namespace Tilia.VRTKUI.Prefabs.CameraRig.SimulatedCameraRig
 {
     using UnityEngine;
     using UnityEngine.UI;

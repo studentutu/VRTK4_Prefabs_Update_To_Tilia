@@ -1,7 +1,7 @@
 ﻿using System;
 using Scripts.Common.AnimationParameter;
 
-namespace Tillia.VRTK.Animations
+namespace Tilia.VRTK.Animations
 {
     [Serializable]
     public class AnimationToPLay

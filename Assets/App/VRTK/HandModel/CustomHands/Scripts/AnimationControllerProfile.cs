@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Tillia.VRTK.Animations
+namespace Tilia.VRTK.Animations
 {
     [CreateAssetMenu(menuName = "AnimatorStateMachine/AnimatorProfile", fileName = "Profile",order = 4)]
     public class AnimationControllerProfile : ScriptableObject

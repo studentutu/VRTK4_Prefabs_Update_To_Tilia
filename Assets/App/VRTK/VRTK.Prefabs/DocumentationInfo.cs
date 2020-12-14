@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Tillia.VRTKUI.Prefabs
+namespace Tilia.VRTKUI.Prefabs
 {
     
     public class DocumentationInfo : MonoBehaviour

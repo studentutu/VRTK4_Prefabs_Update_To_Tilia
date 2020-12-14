@@ -5,7 +5,7 @@ using Tilia.CameraRigs.TrackedAlias;
 using UnityEngine;
 using Zinnia.Tracking.CameraRig;
 
-namespace Tillia.VRTK
+namespace Tilia.VRTK
 {
     [DisallowMultipleComponent]
     public class CoreMirrorEnable : MonoBehaviour

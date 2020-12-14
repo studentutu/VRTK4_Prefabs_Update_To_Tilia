@@ -1,4 +1,4 @@
-﻿namespace Tillia.VRTKUI.Prefabs.Locomotion.Movement.MovementAmplifier
+﻿namespace Tilia.VRTKUI.Prefabs.Locomotion.Movement.MovementAmplifier
 {
     using UnityEngine;
     using Malimbe.XmlDocumentationAttribute;

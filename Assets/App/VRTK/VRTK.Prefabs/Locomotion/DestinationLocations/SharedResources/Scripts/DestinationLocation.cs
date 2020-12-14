@@ -1,4 +1,4 @@
-﻿namespace Tillia.VRTKUI.Prefabs.Locomotion.DestinationLocations
+﻿namespace Tilia.VRTKUI.Prefabs.Locomotion.DestinationLocations
 {
     using UnityEngine;
     using UnityEngine.Events;

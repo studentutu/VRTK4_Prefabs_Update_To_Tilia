@@ -1,4 +1,4 @@
-﻿namespace Tillia.VRTK.Animations
+﻿namespace Tilia.VRTK.Animations
 {
     public enum AnimationEnum
     {

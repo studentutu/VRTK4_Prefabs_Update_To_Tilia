@@ -1,6 +1,6 @@
 ﻿using Tilia.Interactions.Interactables.Interactables;
 
-namespace Tillia.VRTKUI.Prefabs.Interactions.Interactables
+namespace Tilia.VRTKUI.Prefabs.Interactions.Interactables
 {
     using UnityEngine;
     using UnityEngine.Events;

@@ -4,7 +4,7 @@ using Scripts.Common.AnimationParameter;
 using Scripts.Common.StateMachine;
 using UnityEngine;
 
-namespace Tillia.VRTK.Animations
+namespace Tilia.VRTK.Animations
 {
     [DisallowMultipleComponent]
     public class AnimatorOnHands : MonoBehaviour

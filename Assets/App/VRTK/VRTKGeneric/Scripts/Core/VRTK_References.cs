@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using Tilia.Indicators.ObjectPointers;
 using Tilia.Interactions.Interactables.Interactors;
 using Tilia.Trackers.PseudoBody;
-using Tillia.VRTK.Animations;
-using Tillia.VRTKUI;
+using Tilia.VRTK.Animations;
+using Tilia.VRTKUI;
 using UnityEngine;
 using UnityEngine.Events;
 

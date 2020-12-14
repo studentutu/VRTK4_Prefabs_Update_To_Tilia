@@ -6,7 +6,7 @@ using Zinnia.Data.Type;
 using Zinnia.Extension;
 using Zinnia.Tracking.Follow.Modifier.Property;
 
-namespace Tillia.VRTK
+namespace Tilia.VRTK
 {
     public class TransformRotationAxis : PropertyModifier
     {

@@ -2,7 +2,7 @@
 using Tilia.Interactions.Interactables.Interactables;
 using UnityEngine.Events;
 
-namespace Tillia.VRTKUI.Prefabs.Interactions.Interactables
+namespace Tilia.VRTKUI.Prefabs.Interactions.Interactables
 {
     using UnityEngine;
     using Zinnia.Data.Operation.Extraction;

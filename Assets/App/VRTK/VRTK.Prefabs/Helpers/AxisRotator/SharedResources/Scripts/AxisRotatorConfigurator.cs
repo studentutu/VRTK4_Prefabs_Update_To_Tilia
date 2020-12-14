@@ -1,4 +1,4 @@
-﻿namespace Tillia.VRTKUI.Prefabs.Helpers.AxisRotator
+﻿namespace Tilia.VRTKUI.Prefabs.Helpers.AxisRotator
 {
     using UnityEngine;
     using Malimbe.PropertySerializationAttribute;

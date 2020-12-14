@@ -1,4 +1,4 @@
-﻿namespace Tillia.VRTKUI.Prefabs.Helpers.TrackedCollider
+﻿namespace Tilia.VRTKUI.Prefabs.Helpers.TrackedCollider
 {
     using UnityEngine;
     using Malimbe.XmlDocumentationAttribute;
