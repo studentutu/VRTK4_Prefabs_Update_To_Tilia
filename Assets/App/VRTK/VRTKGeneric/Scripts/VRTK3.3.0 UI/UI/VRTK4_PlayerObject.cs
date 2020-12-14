@@ -10,6 +10,8 @@ namespace Tillia.VRTKUI
     using UnityEngine;
     public sealed class VRTK4_PlayerObject : MonoBehaviour
     {
+        [SerializeField] private VRTK4_UIPointer pointerReference;
+
         /// <summary>
         /// The type of object associated to the player.
         /// </summary>
@@ -79,6 +81,11 @@ namespace Tillia.VRTKUI
                 }
             }
             return false;
+        }
+        
+        public VRTK4_UIPointer GetPointer()
+        {
+            return pointerReference;
         }
     }
 }

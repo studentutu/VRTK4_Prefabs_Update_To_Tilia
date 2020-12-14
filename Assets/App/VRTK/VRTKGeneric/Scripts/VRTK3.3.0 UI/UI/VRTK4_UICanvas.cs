@@ -1,4 +1,6 @@
-﻿namespace Tillia.VRTKUI
+﻿using System;
+
+namespace Tillia.VRTKUI
 {
     using UnityEngine;
     using UnityEngine.UI;
@@ -50,8 +52,9 @@
         protected virtual void OnTriggerEnter(Collider collider)
         {
             VRTK4_PlayerObject colliderCheck = collider.GetComponentInParent<VRTK4_PlayerObject>();
-            VRTK4_UIPointer pointerCheck = collider.GetComponentInParent<VRTK4_UIPointer>();
-            if (pointerCheck != null && colliderCheck != null && colliderCheck.objectType == VRTK4_PlayerObject.ObjectTypes.Collider)
+            VRTK4_UIPointer pointerCheck = colliderCheck == null? null: colliderCheck.GetPointer();
+            if (pointerCheck != null && colliderCheck != null && 
+                colliderCheck.objectType == VRTK4_PlayerObject.ObjectTypes.Collider)
             {
                 pointerCheck.collisionClick = clickOnPointerCollision;
             }
@@ -59,7 +62,8 @@
 
         protected virtual void OnTriggerExit(Collider collider)
         {
-            VRTK4_UIPointer pointerCheck = collider.GetComponentInParent<VRTK4_UIPointer>();
+            VRTK4_PlayerObject colliderCheck = collider.GetComponentInParent<VRTK4_PlayerObject>();
+            VRTK4_UIPointer pointerCheck = colliderCheck == null? null: colliderCheck.GetPointer();
             if (pointerCheck != null)
             {
                 pointerCheck.collisionClick = false;
@@ -68,11 +72,18 @@
 
         protected virtual void SetupCanvas()
         {
+            if (this == null || !isActiveAndEnabled)
+            {
+                return;
+            }
+
             Canvas canvas = GetComponent<Canvas>();
 
             if (canvas == null || canvas.renderMode != RenderMode.WorldSpace)
             {
-                VRTK4_Logger.Error(VRTK4_Logger.GetCommonMessage(VRTK4_Logger.CommonMessageKeys.REQUIRED_COMPONENT_MISSING_FROM_GAMEOBJECT, "VRTK_UICanvas", "Canvas", "the same", " that is set to `Render Mode = World Space`"));
+                VRTK4_Logger.Error(VRTK4_Logger.GetCommonMessage(
+                    VRTK4_Logger.CommonMessageKeys.REQUIRED_COMPONENT_MISSING_FROM_GAMEOBJECT, "VRTK_UICanvas",
+                    "Canvas", "the same", " that is set to `Render Mode = World Space`"));
                 return;
             }
 
@@ -80,7 +91,8 @@
             Vector2 canvasSize = canvasRectTransform.sizeDelta;
             //copy public params then disable existing graphic raycaster
             GraphicRaycaster defaultRaycaster = canvas.gameObject.GetComponent<GraphicRaycaster>();
-            VRTK4_UIGraphicRaycaster customRaycaster = canvas.gameObject.GetComponent<VRTK4_UIGraphicRaycaster>();
+            VRTK4_UIGraphicRaycaster customRaycaster =
+                canvas.gameObject.GetComponent<VRTK4_UIGraphicRaycaster>();
 
             //if it doesn't already exist, add the custom raycaster
             if (customRaycaster == null)
@@ -92,9 +104,14 @@
             {
                 customRaycaster.ignoreReversedGraphics = defaultRaycaster.ignoreReversedGraphics;
                 customRaycaster.blockingObjects = defaultRaycaster.blockingObjects;
-                
+
                 //Use Reflection to transfer the BlockingMask
-                customRaycaster.GetType().GetField("m_BlockingMask", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(customRaycaster,defaultRaycaster.GetType().GetField("m_BlockingMask", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(defaultRaycaster));
+                customRaycaster.GetType()
+                    .GetField("m_BlockingMask", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(
+                        customRaycaster,
+                        defaultRaycaster.GetType()
+                            .GetField("m_BlockingMask", BindingFlags.Instance | BindingFlags.NonPublic)
+                            .GetValue(defaultRaycaster));
 
                 defaultRaycaster.enabled = false;
             }
@@ -104,11 +121,13 @@
             {
                 Vector2 pivot = canvasRectTransform.pivot;
                 float zSize = 0.1f;
-                float zScale = zSize / canvasRectTransform.localScale.z;
+                float zScale = canvasRectTransform.localScale.z > 0 ? zSize / canvasRectTransform.localScale.z : 1;
+
 
                 canvasBoxCollider = canvas.gameObject.AddComponent<BoxCollider>();
                 canvasBoxCollider.size = new Vector3(canvasSize.x, canvasSize.y, zScale);
-                canvasBoxCollider.center = new Vector3(canvasSize.x / 2 - canvasSize.x * pivot.x, canvasSize.y / 2 - canvasSize.y * pivot.y, zScale / 2f);
+                canvasBoxCollider.center = new Vector3(canvasSize.x / 2 - canvasSize.x * pivot.x,
+                    canvasSize.y / 2 - canvasSize.y * pivot.y, zScale / 2f);
                 canvasBoxCollider.isTrigger = true;
             }
 
@@ -147,6 +166,17 @@
             //if autoActivateWithinDistance is greater than 0 then create the front collider sub object
             if (autoActivateWithinDistance > 0f && canvas != null && !canvas.transform.Find(ACTIVATOR_FRONT_TRIGGER_GAMEOBJECT))
             {
+                var comp = canvas.gameObject.GetComponent<Rigidbody>();
+                if (comp  == null)
+                {
+                    comp = canvas.gameObject.AddComponent<Rigidbody>();
+                }
+                comp.isKinematic = true;
+                var anoptherComp = canvas.gameObject.GetComponent<VRTK_UIPointerAutoActivator>();
+                if (anoptherComp == null)
+                {
+                    canvas.gameObject.AddComponent<VRTK_UIPointerAutoActivator>();
+                }
                 RectTransform canvasRectTransform = canvas.GetComponent<RectTransform>();
                 Vector2 pivot = canvasRectTransform.pivot;
 
@@ -156,16 +186,14 @@
                 frontTrigger.transform.localPosition = new Vector3(canvasSize.x / 2 - canvasSize.x * pivot.x, canvasSize.y / 2 - canvasSize.y * pivot.y);
                 frontTrigger.transform.localRotation = Quaternion.identity;
                 frontTrigger.transform.localScale = Vector3.one;
-
-                float actualActivationDistance = autoActivateWithinDistance / canvasRectTransform.localScale.z;
-                BoxCollider frontTriggerBoxCollider = frontTrigger.AddComponent<BoxCollider>();
-                frontTriggerBoxCollider.isTrigger = true;
-                frontTriggerBoxCollider.size = new Vector3(canvasSize.x, canvasSize.y, actualActivationDistance);
-                frontTriggerBoxCollider.center = new Vector3(0f, 0f, -(actualActivationDistance / 2));
-
-                frontTrigger.AddComponent<Rigidbody>().isKinematic = true;
-                frontTrigger.AddComponent<VRTK_UIPointerAutoActivator>();
                 frontTrigger.layer = LayerMask.NameToLayer("Ignore Raycast");
+
+                float actualActivationDistance = canvasRectTransform.localScale.z > 0 ? autoActivateWithinDistance / canvasRectTransform.localScale.z : 1;
+                BoxCollider boxColl = frontTrigger.AddComponent<BoxCollider>();
+                boxColl.size = new Vector3(canvasSize.x, canvasSize.y, actualActivationDistance);
+                boxColl.center = new Vector3(0f, 0f, -(actualActivationDistance / 2));
+                boxColl.isTrigger = true;
+                frontTrigger.AddComponent<VRTK_UIPointerAutoActivator>();
             }
         }
 
@@ -224,19 +252,27 @@
 
     public class VRTK_UIPointerAutoActivator : MonoBehaviour
     {
+        private VRTK4_UICanvas parentCanvas;
+        
         protected virtual void OnTriggerEnter(Collider collider)
         {
             VRTK4_PlayerObject colliderCheck = collider.GetComponentInParent<VRTK4_PlayerObject>();
-            VRTK4_UIPointer pointerCheck = collider.GetComponentInParent<VRTK4_UIPointer>();
-            if (pointerCheck != null && colliderCheck != null && colliderCheck.objectType == VRTK4_PlayerObject.ObjectTypes.Collider)
+            VRTK4_UIPointer pointerCheck = colliderCheck == null? null: colliderCheck.GetPointer();
+            if (pointerCheck != null && colliderCheck != null 
+                                     && colliderCheck.objectType == VRTK4_PlayerObject.ObjectTypes.Collider)
             {
-                pointerCheck.autoActivatingCanvas = gameObject;
+                if (parentCanvas == null)
+                {
+                    parentCanvas = gameObject.GetComponentInParent<VRTK4_UICanvas>();
+                }
+                pointerCheck.autoActivatingCanvas = parentCanvas == null? null : parentCanvas.gameObject;
             }
         }
 
         protected virtual void OnTriggerExit(Collider collider)
         {
-            VRTK4_UIPointer pointerCheck = collider.GetComponentInParent<VRTK4_UIPointer>();
+            VRTK4_PlayerObject colliderCheck = collider.GetComponentInParent<VRTK4_PlayerObject>();
+            VRTK4_UIPointer pointerCheck = colliderCheck == null? null: colliderCheck.GetPointer();
             if (pointerCheck != null && pointerCheck.autoActivatingCanvas == gameObject)
             {
                 pointerCheck.autoActivatingCanvas = null;

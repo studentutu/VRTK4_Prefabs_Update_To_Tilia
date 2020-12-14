@@ -8,7 +8,7 @@
     public class VRTK4_VRInputModule : PointerInputModule
     {
         public List<VRTK4_UIPointer> pointers = new List<VRTK4_UIPointer>();
-
+        protected List<RaycastResult> raycasts = new List<RaycastResult>();
         public virtual void Initialise()
         {
             pointers.Clear();
@@ -28,7 +28,7 @@
                 if (pointer.gameObject.activeInHierarchy && pointer.enabled)
                 {
                     List<RaycastResult> results = new List<RaycastResult>();
-                    if (pointer.PointerActive())
+                    if (pointer.PointerActive() || pointer.autoActivatingCanvas != null)
                     {
                         results = CheckRaycasts(pointer);
                     }
@@ -49,9 +49,10 @@
             raycastResult.worldNormal = pointer.GetOriginForward();
 
             pointer.pointerEventData.pointerCurrentRaycast = raycastResult;
-
-            List<RaycastResult> raycasts = new List<RaycastResult>();
+            VRTK4_UIGraphicRaycaster.CurrentPointer = pointer;
+            raycasts.Clear();
             eventSystem.RaycastAll(pointer.pointerEventData, raycasts);
+            VRTK4_UIGraphicRaycaster.CurrentPointer = null;
             return raycasts;
         }
 

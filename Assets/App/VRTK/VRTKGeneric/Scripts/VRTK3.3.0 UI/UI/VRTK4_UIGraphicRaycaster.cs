@@ -15,6 +15,7 @@
 
     public class VRTK4_UIGraphicRaycaster : GraphicRaycaster
     {
+        public static VRTK4_UIPointer CurrentPointer;
         protected Canvas currentCanvas;
         protected Vector2 lastKnownPosition;
         protected const float UI_CONTROL_OFFSET = 0.00001f;
@@ -30,7 +31,16 @@
                 return;
             }
 
-            Ray ray = new Ray(eventData.pointerCurrentRaycast.worldPosition, eventData.pointerCurrentRaycast.worldNormal);
+            Ray ray;
+            if (CurrentPointer != null)
+            {
+                ray = new Ray(CurrentPointer.GetOriginPosition(), CurrentPointer.GetOriginForward());
+            }
+            else
+            {
+                ray = new Ray(eventData.pointerCurrentRaycast.worldPosition, eventData.pointerCurrentRaycast.worldNormal);
+            }
+
             Raycast(canvas, eventCamera, eventData, ray, ref s_RaycastResults);
             SetNearestRaycast(ref eventData, ref resultAppendList, ref s_RaycastResults);
             s_RaycastResults.Clear();
