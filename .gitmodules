@@ -1,0 +1,4 @@
+[submodule "Assets/Modules/VRTK4_UI"]
+	path = Assets/Modules/VRTK4_UI
+	url = https://github.com/studentutu/Tilia.UnityUI
+	branch = master
