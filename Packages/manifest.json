@@ -21,6 +21,7 @@
     "com.unity.ugui": "1.0.0",
     "com.unity.xr.management": "3.2.15",
     "com.unity.xr.oculus": "1.5.0",
+    "io.extendreality.tilia.developertools.unity": "1.0.2",
     "io.extendreality.tilia.camerarigs.spatialsimulator.unity": "1.2.17",
     "io.extendreality.tilia.camerarigs.trackedalias.unity": "1.5.0",
     "io.extendreality.tilia.camerarigs.unityxr": "1.4.0",

@@ -121,8 +121,8 @@
       "url": "https://packages.unity.com"
     },
     "io.extendreality.malimbe": {
-      "version": "9.6.5",
-      "depth": 1,
+      "version": "9.6.6",
+      "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://registry.npmjs.org"
@@ -153,6 +153,15 @@
       "source": "registry",
       "dependencies": {
         "io.extendreality.zinnia.unity": "1.25.0"
+      },
+      "url": "https://registry.npmjs.org"
+    },
+    "io.extendreality.tilia.developertools.unity": {
+      "version": "1.0.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "io.extendreality.zinnia.unity": "1.30.0"
       },
       "url": "https://registry.npmjs.org"
     },
@@ -352,11 +361,11 @@
       "url": "https://registry.npmjs.org"
     },
     "io.extendreality.zinnia.unity": {
-      "version": "1.25.0",
-      "depth": 0,
+      "version": "1.30.0",
+      "depth": 1,
       "source": "registry",
       "dependencies": {
-        "io.extendreality.malimbe": "9.6.5"
+        "io.extendreality.malimbe": "9.6.6"
       },
       "url": "https://registry.npmjs.org"
     },
